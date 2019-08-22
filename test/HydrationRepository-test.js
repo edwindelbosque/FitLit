@@ -8,51 +8,51 @@ beforeEach(() => {
   dataHydration = [
     {
       "userID": 12,
-      "date": "2019/07/12",
+      "date": "2019/08/15",
       "numOunces": 71
     },
     {
       "userID": 12,
-      "date": "2019/07/13",
+      "date": "2019/08/16",
       "numOunces": 37
     },
     {
       "userID": 12,
-      "date": "2019/07/14",
+      "date": "2019/08/17",
       "numOunces": 97
     },
     {
       "userID": 14,
-      "date": "2019/07/15",
+      "date": "2019/08/17",
       "numOunces": 62
     },
     {
       "userID": 12,
-      "date": "2019/07/15",
+      "date": "2019/08/18",
       "numOunces": 62
     },
     {
       "userID": 12,
-      "date": "2019/07/16",
+      "date": "2019/08/19",
       "numOunces": 77
     },
     {
       "userID": 12,
-      "date": "2019/07/17",
+      "date": "2019/08/20",
       "numOunces": 76
     },
     {
       "userID": 12,
-      "date": "2019/07/18",
+      "date": "2019/08/21",
       "numOunces": 85
     },
     {
       "userID": 12,
-      "date": "2019/07/19",
+      "date": "2019/08/22",
       "numOunces": 58
     }
   ];
-  hydrationRepository = new HydrationRepository(dataHydration);
+  hydrationRepository = new HydrationRepository(dataHydration, 12);
 });
 
 describe('HydrationRepository', () => {
@@ -68,42 +68,42 @@ describe('HydrationRepository', () => {
     expect(hydrationRepository.getHydrationData(12)).to.deep.equal([
       {
         "userID": 12,
-        "date": "2019/07/12",
+        "date": "2019/08/15",
         "numOunces": 71
       },
       {
         "userID": 12,
-        "date": "2019/07/13",
+        "date": "2019/08/16",
         "numOunces": 37
       },
       {
         "userID": 12,
-        "date": "2019/07/14",
+        "date": "2019/08/17",
         "numOunces": 97
       },
       {
         "userID": 12,
-        "date": "2019/07/15",
+        "date": "2019/08/18",
         "numOunces": 62
       },
       {
         "userID": 12,
-        "date": "2019/07/16",
+        "date": "2019/08/19",
         "numOunces": 77
       },
       {
         "userID": 12,
-        "date": "2019/07/17",
+        "date": "2019/08/20",
         "numOunces": 76
       },
       {
         "userID": 12,
-        "date": "2019/07/18",
+        "date": "2019/08/21",
         "numOunces": 85
       },
       {
         "userID": 12,
-        "date": "2019/07/19",
+        "date": "2019/08/22",
         "numOunces": 58
       }
     ]);
@@ -113,20 +113,24 @@ describe('HydrationRepository', () => {
     expect(hydrationRepository.getAllTimeAvg(12)).to.equal(70);
   });
 
+  it('should return the current date', () => {
+    expect(hydrationRepository.getCurrentDate()).to.equal('2019/08/22');
+  });
+
   it('should return how many fluid ounces they consumed for a specific day', () => {
-    expect(hydrationRepository.totalOzDay('2019/07/13')).to.equal(37);
+    expect(hydrationRepository.totalOzDay()).to.equal(58);
   });
 
   it('should return how many fluid ounces of water consumed each day over the course of a week', () => {
-    expect(hydrationRepository.weeklyHydrationAvg(12, '2019/07/19')).to.deep.equal(
+    expect(hydrationRepository.weeklyHydrationAvg(12, '2019/08/22')).to.deep.equal(
       [
-        { userID: 12, date: '2019/07/13', numOunces: 37 },
-        { userID: 12, date: '2019/07/14', numOunces: 97 },
-        { userID: 12, date: '2019/07/15', numOunces: 62 },
-        { userID: 12, date: '2019/07/16', numOunces: 77 },
-        { userID: 12, date: '2019/07/17', numOunces: 76 },
-        { userID: 12, date: '2019/07/18', numOunces: 85 },
-        { userID: 12, date: '2019/07/19', numOunces: 58 }
+        { userID: 12, date: '2019/08/16', numOunces: 37 },
+        { userID: 12, date: '2019/08/17', numOunces: 97 },
+        { userID: 12, date: '2019/08/18', numOunces: 62 },
+        { userID: 12, date: '2019/08/19', numOunces: 77 },
+        { userID: 12, date: '2019/08/20', numOunces: 76 },
+        { userID: 12, date: '2019/08/21', numOunces: 85 },
+        { userID: 12, date: '2019/08/22', numOunces: 58 }
       ]);
   });
 

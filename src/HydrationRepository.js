@@ -30,20 +30,18 @@ class HydrationRepository {
     }
 
     today = `${yyyy}/${mm}/${dd}`;
-    console.log(today);
     return today;
   }
 
   totalOzDay() {
-    return this.userHydro.find(user => user.date === this.getCurrentDate()).numOunces;
+    let foundUser = this.userHydro.find(user => user.date === this.getCurrentDate());
+    return foundUser.numOunces;
   }
 
   weeklyHydrationAvg() {
     const userData = this.userHydro;
     const indexCurrentDay = userData.findIndex(data => data.date === this.getCurrentDate());
-    const lastWeekData = userData.splice(indexCurrentDay - 6, indexCurrentDay);
-    console.log(indexCurrentDay);
-    console.log(lastWeekData);
+    const lastWeekData = userData.slice(indexCurrentDay - 6, indexCurrentDay + 1);
     return lastWeekData;
   }
 }
