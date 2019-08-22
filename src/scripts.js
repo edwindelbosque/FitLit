@@ -44,5 +44,5 @@ function displayWeeklyOz() {
   const users = hydrationRepository.weeklyHydrationAvg()
   return users.forEach(user => {
     return $(`<li>${user.date}: ${user.numOunces} oz</li>`).appendTo(weeklyOz)
-  })
+  });
 }

@@ -1,18 +1,20 @@
 class HydrationRepository {
   constructor(data, id) {
     this.data = data;
-    this.userHydro = this.getHydrationData(id);
+    this.id = id;
+    this.user = this.getHydrationData();
+    this.today = this.getCurrentDate();
   }
 
-  getHydrationData(id) {
-    return this.data.filter((user => user.userID === id));
+  getHydrationData() {
+    return this.data.filter((user => user.userID === this.id));
   }
 
-  getAllTimeAvg(id) {
-    return Math.round(this.getHydrationData(id).reduce((totalNumOz, ozPerDay) => {
+  getAllTimeAvg() {
+    return Math.round(this.user.reduce((totalNumOz, ozPerDay) => {
       totalNumOz += ozPerDay.numOunces;
       return totalNumOz;
-    }, 0) / this.getHydrationData(id).length);
+    }, 0) / this.user.length);
   }
 
   getCurrentDate() {
@@ -22,11 +24,11 @@ class HydrationRepository {
     let yyyy = today.getFullYear();
 
     if (dd < 10) {
-      dd = '0' + dd
+      dd = '0' + dd;
     }
 
     if (mm < 10) {
-      mm = '0' + mm
+      mm = '0' + mm;
     }
 
     today = `${yyyy}/${mm}/${dd}`;
@@ -34,14 +36,13 @@ class HydrationRepository {
   }
 
   totalOzDay() {
-    let foundUser = this.userHydro.find(user => user.date === this.getCurrentDate());
+    let foundUser = this.user.find(user => user.date === this.today);
     return foundUser.numOunces;
   }
 
   weeklyHydrationAvg() {
-    const userData = this.userHydro;
-    const indexCurrentDay = userData.findIndex(data => data.date === this.getCurrentDate());
-    const lastWeekData = userData.slice(indexCurrentDay - 6, indexCurrentDay + 1);
+    const indexCurrentDay = this.user.findIndex(data => data.date === this.today);
+    const lastWeekData = this.user.slice(indexCurrentDay - 6, indexCurrentDay + 1);
     return lastWeekData;
   }
 }
