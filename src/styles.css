@@ -1,6 +1,7 @@
 :root {
   --accent-color: #e26d5c;
   --background: #2d3142;
+  --shadow: #1a1b25;
   --background-light: #4f5d75;
   --light-text: #bfc0c0;
   --box-background: #ffffff;
@@ -19,7 +20,6 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Noto Sans SC', sans-serif;
-  height: 100vh;
 }
 
 nav {
@@ -65,10 +65,35 @@ main {
 }
 
 .main__sections {
-  background-color: var(--box-background);
-  border-radius: 6px;
-  height: 150px;
+  display: flex;
+  flex-direction: column;
   margin: 10px 0;
   padding: 0 2%;
   width: 100%;
+}
+
+.section__h3--title {
+  background-color: var(--background-light);
+  border-radius: 6px;
+  box-shadow: 10px 10px 30px var(--shadow);
+  padding: 2px 8px;
+}
+
+h3 {
+  margin-bottom: 12px;
+  color: var(--accent-color);
+}
+
+.widget--container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.article--widget {
+  background-color: var(--box-background);
+  border-radius: 6px;
+  box-shadow: 10px 10px 30px var(--shadow);
+  width: 30%;
+  height: 125px;
 }
