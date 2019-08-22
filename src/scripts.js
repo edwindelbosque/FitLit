@@ -1,6 +1,4 @@
 // eslint-disable-next-line no-undef
-let userRepository = new UserRepository(userData);
-let hydrationRepository = new HydrationRepository(hydrationData, 32);
 const name = $('#name');
 const address = $('#address');
 const email = $('#email');
@@ -10,31 +8,41 @@ const stepCompare = $('#step-compare');
 const dailyOz = $('#daily-oz');
 const weeklyOz = $('#weekly-oz');
 
+let userId = Math.floor(Math.random() * (50 - 1) + 1);
+let userRepository = new UserRepository(userData);
+let hydrationRepository = new HydrationRepository(hydrationData, userId);
+
 $(document).ready(() => {
-  updateUserDataDOM();
-  compareStepGoal();
+  let userInfo = userRepository.getUserData(userId);
+  updateUserDataDOM(userInfo);
+  compareStepGoal(userInfo);
   displayDailyOz();
   displayWeeklyOz();
 });
 
-function updateUserDataDOM() {
-  name.text(userRepository.getUserData(33).name);
-  address.text(userRepository.getUserData(33).address);
-  email.text(userRepository.getUserData(33).email);
-  strideLength.text(userRepository.getUserData(33).strideLength);
-  dailyStepGoal.text(userRepository.getUserData(33).dailyStepGoal);
+function updateUserDataDOM(userInfo) {
+  name.text(userInfo.name);
+  address.text(userInfo.address);
+  email.text(userInfo.email);
+  strideLength.text(userInfo.strideLength);
+  dailyStepGoal.text(userInfo.dailyStepGoal);
 }
 
-function compareStepGoal() {
-  const numSteps = Math.abs(userRepository.getAvgStep() - userRepository.getUserData(33).dailyStepGoal);
-  const stepStatus = userRepository.getAvgStep() > userRepository.getUserData(33).dailyStepGoal ? `under` : `over`;
+function compareStepGoal(userInfo) {
+  const avgStep = userRepository.getAvgStep()
+  const dailyStep = userInfo.dailyStepGoal;
+  const numSteps = Math.abs(avgStep - dailyStep);
+  const stepStatus = avgStep > dailyStep ? `under` : `over`;
   stepCompare.text(`You are ${numSteps} steps ${stepStatus} the average daily goal!`);
 }
 
 function displayDailyOz() {
-  dailyOz.text(`You have drank ${hydrationRepository.totalOzDay()} ounces today!`);
+  dailyOz.text(`You have drank ${hydrationRepository.totalOzDay()} oz today!`);
 }
 
 function displayWeeklyOz() {
-  weeklyOz.text(hydrationRepository.weeklyHydrationAvg());
+  const users = hydrationRepository.weeklyHydrationAvg()
+  return users.forEach(user => {
+    return $(`<li>${user.date}: ${user.numOunces} oz</li>`).appendTo(weeklyOz)
+  })
 }
