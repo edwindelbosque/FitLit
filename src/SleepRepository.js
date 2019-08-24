@@ -3,6 +3,7 @@ class SleepRepository {
     this.sleepData = sleepData;
     this.id = id;
     this.user = this.getSleepData();
+    // this.organizedData = this.reFormatData();
   }
 
   getSleepData() {
@@ -29,8 +30,8 @@ class SleepRepository {
     return this.user.find(day => day.date === date).hoursSlept;
   }
 
-  weeklySleepData(date) {
-    let i = this.user.findIndex(day => day.date === date);
+  weeklySleepData(date, user = this.user) {
+    let i = user.findIndex(day => day.date === date);
     return this.user.slice(i - 6, i + 1);
   }
 
@@ -54,16 +55,37 @@ class SleepRepository {
     return parseFloat((avgQual / this.sleepData.length).toFixed(1));
   }
 
-  reFormatData() {
-    let redo = this.sleepData.reduce((sleepObj, user) => {
-      if (!sleepObj[user.userID]) {
-        sleepObj[user.userID] = [user.date];
-      } else {
-        sleepObj[user.userID].push(user.date);
-      }
-      return sleepObj;
-    }, {});
-    console.log(redo);
+  getAllIds() {
+    return this.sleepData.reduce((idHolder, log) => {
+      !idHolder.includes(log.userID) && idHolder.push(log.userID);
+      return idHolder;
+    }, [])
+  }
+
+  getBestSleepers(date) {
+    let sorted = []
+
+    this.getAllIds().forEach(id => {
+      let userLogs = this.sleepData.filter(log => log.userID === id)
+      sorted.push(userLogs);
+    });
+
+    let allWeeklyData = sorted.reduce((accumulator, user) => {
+      let i = user.findIndex(log => log.date === date);
+      accumulator.push(user.slice(i - 6, i + 1));
+      return accumulator;
+    }, []);
+
+    let allAverages = allWeeklyData.reduce((acc, user) => {
+      let avgQual = user.reduce((totalQual, day) => {
+        totalQual += day.sleepQuality;
+        return totalQual;
+      }, 0);
+      acc.push({ id: acc.length + 1, avgQual: parseFloat((avgQual / 7).toFixed(1)) })
+      return acc
+    }, []);
+
+    return allAverages.filter(user => user.avgQual > 3);
   }
 
 }
