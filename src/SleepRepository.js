@@ -42,7 +42,7 @@ class SleepRepository {
 
   getWeeklyQuality(date) {
     return this.weeklySleepData(date).map(day => {
-      return { date: day.date, sleepQuality: day.sleepQuality }
+      return { date: day.date, sleepQuality: day.sleepQuality };
     });
   }
 
@@ -54,8 +54,16 @@ class SleepRepository {
     return parseFloat((avgQual / this.sleepData.length).toFixed(1));
   }
 
-  highestQualitySleep() {
-
+  reFormatData() {
+    let redo = this.sleepData.reduce((sleepObj, user) => {
+      if (!sleepObj[user.userID]) {
+        sleepObj[user.userID] = [user.date];
+      } else {
+        sleepObj[user.userID].push(user.date);
+      }
+      return sleepObj;
+    }, {});
+    console.log(redo);
   }
 
 }

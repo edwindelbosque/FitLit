@@ -11,6 +11,7 @@ const weeklyOz = $('#weekly-oz');
 let userId = Math.floor(Math.random() * (50 - 1) + 1);
 let userRepository = new UserRepository(userData);
 let hydrationRepository = new HydrationRepository(hydrationData, userId);
+let sleepRepository = new SleepRepository(sleepData, userId);
 
 $(document).ready(() => {
   let userInfo = userRepository.getUserData(userId);
@@ -18,6 +19,7 @@ $(document).ready(() => {
   compareStepGoal(userInfo);
   displayDailyOz();
   displayWeeklyOz();
+  sleepRepository.reFormatData();
 });
 
 function updateUserDataDOM(userInfo) {
