@@ -18,7 +18,7 @@
   <body>
     <nav>
       <h2>FitLit</h2>
-      <h5>DATE</h5>
+      <h5 id="date"></h5>
     </nav>
     <header>
       <h1 id="name"></h1>
@@ -55,11 +55,14 @@
       <section class="main__section--sleep main__sections">
         <h3 class="section__h3--title">Sleep</h3>
         <section class="sleep--container widget--container">
-          <article class="sleep__article--1 article--widget">
+          <article class="sleep__article--1 article--widget" id="yesterday-sleep">
           </article>
           <article class="sleep__article--2 article--widget">
+            <ul id="weekly-sleep"></ul>
           </article>
           <article class="sleep__article--3 article--widget">
+            <h5>Your all-time sleep averages are:</h5>
+            <ul id="all-time-sleep"></ul>
           </article>
         </section>
       </section>
