@@ -29,7 +29,8 @@ nav {
   display: flex;
   justify-content: space-between;
   height: 50px;
-  padding: 0 10%;
+  font-size: 18px;
+  padding: 0 11.5%;
   width: 100%;
 }
 
@@ -44,6 +45,7 @@ header {
 
 h1 {
   color: var(--accent-color);
+  font-size: 40px;
 }
 
 ul {
@@ -74,7 +76,7 @@ main {
 
 .section__h3--title {
   background-color: var(--background-light);
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: 10px 10px 30px var(--shadow);
   padding: 2px 8px;
 }
@@ -92,7 +94,7 @@ h3 {
 
 .article--widget {
   background-color: var(--box-background);
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: 10px 10px 30px var(--shadow);
   width: 30%;
   height: 125px;
