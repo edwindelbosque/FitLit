@@ -98,7 +98,7 @@ class SleepRepository {
       totalHours += day.hoursSlept;
       return totalHours;
     }, 0)
-    return parseFloat(totalWeeklyHours / 7).toFixed(1);
+    return parseFloat((totalWeeklyHours / 7).toFixed(1));
   }
 
 }

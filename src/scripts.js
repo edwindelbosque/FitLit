@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-undef
 const name = $('#name');
 const address = $('#address');
 const email = $('#email');
@@ -8,13 +7,13 @@ const stepCompare = $('#step-compare');
 const dailyOz = $('#daily-oz');
 const weeklyOz = $('#weekly-oz');
 
-let userId = Math.floor(Math.random() * (50 - 1) + 1);
+let userIdRandomizer = Math.floor(Math.random() * (50 - 1) + 1);
 let userRepository = new UserRepository(userData);
-let hydrationRepository = new HydrationRepository(hydrationData, userId);
-let sleepRepository = new SleepRepository(sleepData, userId);
+let hydrationRepository = new HydrationRepository(hydrationData, userIdRandomizer);
+let sleepRepository = new SleepRepository(sleepData, userIdRandomizer);
 
 $(document).ready(() => {
-  let userInfo = userRepository.getUserData(userId);
+  let userInfo = userRepository.getUserData(userIdRandomizer);
   updateUserDataDOM(userInfo);
   compareStepGoal(userInfo);
   displayDailyOz();
@@ -39,17 +38,17 @@ function compareStepGoal(userInfo) {
 }
 
 function displayDailyOz() {
-  dailyOz.text(`You have drank ${hydrationRepository.totalOzDay()} oz today!`);
+  dailyOz.text(`You have drank ${hydrationRepository.totalOzDay(getCurrentDate())} oz today!`);
 }
 
 function displayWeeklyOz() {
-  const users = hydrationRepository.weeklyHydrationAvg()
+  const users = hydrationRepository.weeklyHydrationAvg(getCurrentDate())
   return users.forEach(user => {
     return $(`<li>${user.date}: ${user.numOunces} oz</li>`).appendTo(weeklyOz)
   });
 }
 
-getCurrentDate() {
+function getCurrentDate() {
   let today = new Date();
   let dd = today.getDate();
   let mm = today.getMonth() + 1;
