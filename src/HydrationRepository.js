@@ -3,7 +3,6 @@ class HydrationRepository {
     this.data = data;
     this.id = id;
     this.user = this.getHydrationData();
-    this.today = this.getCurrentDate();
   }
 
   getHydrationData() {
@@ -17,31 +16,13 @@ class HydrationRepository {
     }, 0) / this.user.length);
   }
 
-  getCurrentDate() {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    let yyyy = today.getFullYear();
-
-    if (dd < 10) {
-      dd = '0' + dd;
-    }
-
-    if (mm < 10) {
-      mm = '0' + mm;
-    }
-
-    today = `${yyyy}/${mm}/${dd}`;
-    return today;
-  }
-
-  totalOzDay() {
-    let foundUser = this.user.find(user => user.date === this.today);
+  totalOzDay(date) {
+    let foundUser = this.user.find(user => user.date === date);
     return foundUser.numOunces;
   }
 
-  weeklyHydrationAvg() {
-    const indexCurrentDay = this.user.findIndex(data => data.date === this.today);
+  weeklyHydrationAvg(date) {
+    const indexCurrentDay = this.user.findIndex(data => data.date === date);
     const lastWeekData = this.user.slice(indexCurrentDay - 6, indexCurrentDay + 1);
     return lastWeekData;
   }

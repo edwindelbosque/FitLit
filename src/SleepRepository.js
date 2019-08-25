@@ -3,7 +3,6 @@ class SleepRepository {
     this.sleepData = sleepData;
     this.id = id;
     this.user = this.getSleepData();
-    // this.organizedData = this.reFormatData();
   }
 
   getSleepData() {
@@ -86,6 +85,20 @@ class SleepRepository {
     }, []);
 
     return allAverages.filter(user => user.avgQual > 3);
+  }
+
+  getMaxSleepers(date) {
+    let specificDate = this.sleepData.filter(day => day.date === date);
+    let maxSleepHours = Math.max.apply(Math, specificDate.map((log) => log.hoursSlept));
+    return specificDate.filter(user => user.hoursSlept === maxSleepHours);
+  }
+
+  weeklyAvgHours(date) {
+    let totalWeeklyHours = this.weeklySleepData(date).reduce((totalHours, day) => {
+      totalHours += day.hoursSlept;
+      return totalHours;
+    }, 0)
+    return parseFloat(totalWeeklyHours / 7).toFixed(1);
   }
 
 }

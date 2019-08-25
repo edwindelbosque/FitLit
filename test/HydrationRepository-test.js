@@ -49,12 +49,8 @@ describe('HydrationRepository', () => {
     expect(hydrationRepository.getAllTimeAvg()).to.equal(70);
   });
 
-  it('should return the current date', () => {
-    expect(hydrationRepository.getCurrentDate()).to.equal('2019/08/22');
-  });
-
   it('should return how many fluid ounces they consumed for a specific day', () => {
-    expect(hydrationRepository.totalOzDay()).to.equal(58);
+    expect(hydrationRepository.totalOzDay('2019/08/22')).to.equal(58);
   });
 
   it('should return how many fluid ounces of water consumed each day over the course of a week', () => {
