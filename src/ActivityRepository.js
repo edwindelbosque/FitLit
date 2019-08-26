@@ -83,6 +83,11 @@ class ActivityRepository {
   getDailyStats(date, detail) {
     return this.user.find(log => log.date === date)[detail];
   }
+
+  getWeeklyStats(date) {
+    const index = this.user.findIndex(log => log.date === date);
+    return this.user.slice(index - 6, index + 1);
+  }
 }
 
 if (typeof module !== 'undefined') {

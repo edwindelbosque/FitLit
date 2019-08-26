@@ -10,9 +10,11 @@ const date = $('#date');
 const yesterdaySleep = $('#yesterday-sleep');
 const weeklySleep = $('#weekly-sleep');
 const allTimeSleep = $('#all-time-sleep');
-const dailySteps = $('#daily-steps');
-const dailyDistance = $('#daily-distance');
-const dailyMinutes = $('#daily-minutes');
+const dailyActivity = $('#daily-activity');
+const weeklySteps = $('#weekly-steps');
+const weeklyMinutes = $('#weekly-minutes');
+const weeklyStairs = $('#weekly-stairs-climbed');
+
 const compareActivity = $('#compare-activity');
 const weeklyActivity = $('#weekly-activity');
 
@@ -31,7 +33,8 @@ $(document).ready(() => {
   sleepRepository.getBestSleepers();
   displayCurrentDate();
   displaySleep();
-  displayActivity()
+  displayActivity();
+  displayWeeklyActivity();
 });
 
 function updateUserDataDOM(userInfo) {
@@ -116,17 +119,19 @@ function displaySleep() {
 }
 
 function displayActivity() {
-  $(`<p>You took ${activityRepository.getDailyStats(getCurrentDate(), 'numSteps')} steps today!</p>`).appendTo(dailySteps);
-  $(`<p>You were active for ${activityRepository.getMinutesActive(getCurrentDate())} minutes today!</p>`).appendTo(dailyDistance);
-  $(`<p>You walked ${activityRepository.getMilesWalked(getCurrentDate(), userRepository.getUserData())} miles today!</p>`).appendTo(dailyMinutes);
+  $(`<li>You took ${activityRepository.getDailyStats(getCurrentDate(), 'numSteps')} steps</li>`).appendTo(dailyActivity);
+  $(`<li>You were active for ${activityRepository.getMinutesActive(getCurrentDate())} minutes</li>`).appendTo(dailyActivity);
+  $(`<li>You walked ${activityRepository.getMilesWalked(getCurrentDate(), userRepository.getUserData())} miles</li>`).appendTo(dailyActivity);
 
   $(`<li>${activityRepository.getAverageStairsDay(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'flightsOfStairs')} stairs from the average</li>`).appendTo(compareActivity);
   $(`<li>${activityRepository.getAverageStepsDay(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'numSteps')}  from the average</li>`).appendTo(compareActivity);
   $(`<li>${activityRepository.getAvergageMinutesActive(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'minutesActive')} from the average</li>`).appendTo(compareActivity);
+}
 
-
-  // $(`<p>You took ${activityRepository.getDailySteps(getCurrentDate())} steps today!</p>`).appendTo(weeklyActivity);
-  // $(`<p>You took ${activityRepository.getDailySteps(getCurrentDate())} steps today!</p>`).appendTo(weeklyActivity);
-  // $(`<p>You took ${activityRepository.getDailySteps(getCurrentDate())} steps today!</p>`).appendTo(weeklyActivity);
-
+function displayWeeklyActivity() {
+  activityRepository.getWeeklyStats(getCurrentDate()).forEach(day => {
+    $(`<li>${day.date}: ${day.numSteps} steps</li>`).appendTo(weeklySteps);
+    $(`<li>${day.date}: ${day.minutesActive} mins</li>`).appendTo(weeklyMinutes);
+    $(`<li>${day.date}: ${day.flightsOfStairs} flights</li>`).appendTo(weeklyStairs);
+  });
 }
