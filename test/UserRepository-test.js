@@ -47,7 +47,7 @@ beforeEach(() => {
         33
       ]
     }];
-  userRepository = new UserRepository(data);
+  userRepository = new UserRepository(data, 3);
 });
 
 describe('UserRepository', () => {
@@ -61,7 +61,7 @@ describe('UserRepository', () => {
   });
 
   it('should return user data upon ID', () => {
-    expect(userRepository.getUserData(3)).to.deep.equal(data[2]);
+    expect(userRepository.getUserData()).to.deep.equal(data[2]);
   });
 
   it('should return the average step count goal of all users', () => {

@@ -1,10 +1,11 @@
 class UserRepository {
-  constructor(data) {
+  constructor(data, id) {
     this.data = data;
+    this.id = id;
   }
 
-  getUserData(id) {
-    return this.data.find(user => user.id === id);
+  getUserData() {
+    return this.data.find(user => user.id === this.id);
   }
 
   getAvgStep() {
