@@ -58,14 +58,14 @@ class SleepRepository {
     return this.sleepData.reduce((idHolder, log) => {
       !idHolder.includes(log.userID) && idHolder.push(log.userID);
       return idHolder;
-    }, [])
+    }, []);
   }
 
   getBestSleepers(date) {
-    let sorted = []
+    let sorted = [];
 
     this.getAllIds().forEach(id => {
-      let userLogs = this.sleepData.filter(log => log.userID === id)
+      let userLogs = this.sleepData.filter(log => log.userID === id);
       sorted.push(userLogs);
     });
 
@@ -80,8 +80,8 @@ class SleepRepository {
         totalQual += day.sleepQuality;
         return totalQual;
       }, 0);
-      acc.push({ id: acc.length + 1, avgQual: parseFloat((avgQual / 7).toFixed(1)) })
-      return acc
+      acc.push({ id: acc.length + 1, avgQual: parseFloat((avgQual / 7).toFixed(1)) });
+      return acc;
     }, []);
 
     return allAverages.filter(user => user.avgQual > 3);
@@ -97,7 +97,7 @@ class SleepRepository {
     let totalWeeklyHours = this.weeklySleepData(date).reduce((totalHours, day) => {
       totalHours += day.hoursSlept;
       return totalHours;
-    }, 0)
+    }, 0);
     return parseFloat((totalWeeklyHours / 7).toFixed(1));
   }
 
