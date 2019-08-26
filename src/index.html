@@ -69,17 +69,19 @@
     <section class="main__section--activity main__sections">
       <h3 class="section__h3--title">Activity</h3>
       <section class="activity--container--1 widget--container">
-        <article class="activity__article--1 article--widget">
+        <article class="activity__article--1 article--widget" id="daily-steps">
         </article>
-        <article class="activity__article--2 article--widget">
+        <article class="activity__article--2 article--widget" id="daily-distance">
         </article>
       </section>
       <section class="activity--container--2 widget--container">
-        <article class="activity__article--3 article--widget">
+        <article class="activity__article--3 article--widget" id="daily-minutes">
         </article>
         <article class="activity__article--4 article--widget">
+          <ul id="compare-activity"></ul>
         </article>
         <article class="activity__article--5 article--widget">
+          <ul id="weekly-activity"></ul>
         </article>
       </section>
     </section>
@@ -89,6 +91,7 @@
 
 <script type="text/javascript" src="../data/users.js"></script>
 <script type="text/javascript" src="../data/hydration.js"></script>
+<script type="text/javascript" src="../data/activity.js"></script>
 <script type="text/javascript" src="../data/sleep.js"></script>
 <script type="text/javascript" src="../src/ActivityRepository.js"></script>
 <script type="text/javascript" src="../src/SleepRepository.js"></script>
