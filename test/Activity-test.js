@@ -90,6 +90,12 @@ describe('ActivityRepository', () => {
     expect(activityRepository.getAvergageMinutesActive('2019/08/25')).to.equal(226);
   });
 
-});
+  it('should return the number of kilometers a user walked in a given date', () => {
+    expect(activityRepository.getKilometersWalked('2019/08/25', user)).to.equal(9.2);
+  });
 
-// Make a metric of your own! Document it, calculate it, and display it.
+  it('should return the number of daily steps', () => {
+    expect(activityRepository.getDailyStats('2019/08/25', 'numSteps')).to.equal(9352);
+  });
+  
+});

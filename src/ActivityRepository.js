@@ -75,6 +75,14 @@ class ActivityRepository {
     return Math.round(totalMinutes / filteredDate.length);
   }
 
+  getKilometersWalked(date, user) {
+    const miles = this.getMilesWalked(date, user);
+    return parseFloat((miles * 1.609).toFixed(1));
+  }
+
+  getDailyStats(date, detail) {
+    return this.user.find(log => log.date === date)[detail];
+  }
 }
 
 if (typeof module !== 'undefined') {
