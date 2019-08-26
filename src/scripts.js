@@ -12,12 +12,12 @@ const weeklySleep = $('#weekly-sleep');
 const allTimeSleep = $('#all-time-sleep');
 
 let userIdRandomizer = Math.floor(Math.random() * (50 - 1) + 1);
-let userRepository = new UserRepository(userData);
+let userRepository = new UserRepository(userData, userIdRandomizer);
 let hydrationRepository = new HydrationRepository(hydrationData, userIdRandomizer);
 let sleepRepository = new SleepRepository(sleepData, userIdRandomizer);
 
 $(document).ready(() => {
-  let userInfo = userRepository.getUserData(userIdRandomizer);
+  let userInfo = userRepository.getUserData();
   updateUserDataDOM(userInfo);
   compareStepGoal(userInfo);
   displayDailyOz();
