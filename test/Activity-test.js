@@ -2,6 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const ActivityRepository = require('../src/ActivityRepository');
 const User = require('../src/User.js');
+const UserRepository = require('../src/UserRepository');
 
 let activityRepository, activityData, user, sampleData;
 
@@ -96,5 +97,5 @@ describe('ActivityRepository', () => {
   it('should return the number of daily steps', () => {
     expect(activityRepository.getDailyStats('2019/08/25', 'numSteps')).to.equal(9352);
   });
-
+  
 });

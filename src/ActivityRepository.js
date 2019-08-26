@@ -83,7 +83,6 @@ class ActivityRepository {
   getDailyStats(date, detail) {
     return this.user.find(log => log.date === date)[detail];
   }
-
 }
 
 if (typeof module !== 'undefined') {
