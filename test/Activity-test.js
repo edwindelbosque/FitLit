@@ -97,5 +97,18 @@ describe('ActivityRepository', () => {
   it('should return the number of daily steps', () => {
     expect(activityRepository.getDailyStats('2019/08/25', 'numSteps')).to.equal(9352);
   });
-  
+
+  it('should return the user"s weekly stats', () => {
+    expect(activityRepository.getWeeklyStats('2019/08/25')).to.deep.equal(
+      [
+        { "userID": 13, "date": "2019/08/19", "numSteps": 3425, "minutesActive": 112, "flightsOfStairs": 4 },
+        { "userID": 13, "date": "2019/08/20", "numSteps": 5321, "minutesActive": 140, "flightsOfStairs": 174 },
+        { "userID": 13, "date": "2019/08/21", "numSteps": 12, "minutesActive": 846, "flightsOfStairs": 24 },
+        { "userID": 13, "date": "2019/08/22", "numSteps": 3455, "minutesActive": 836, "flightsOfStairs": 18 },
+        { "userID": 13, "date": "2019/08/23", "numSteps": 5321, "minutesActive": 134, "flightsOfStairs": 85 },
+        { "userID": 13, "date": "2019/08/24", "numSteps": 2948, "minutesActive": 456, "flightsOfStairs": 162 },
+        { "userID": 13, "date": "2019/08/25", "numSteps": 9352, "minutesActive": 567, "flightsOfStairs": 143 },
+      ]);
+  });
+
 });
