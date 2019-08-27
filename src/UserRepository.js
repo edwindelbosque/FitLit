@@ -29,16 +29,6 @@ class UserRepository {
     });
     return friendsData;
   }
-
-  getFriendsActivityInfo() {
-    let activityData = [];
-    let friendsIds = this.friendIds;
-    friendsIds.forEach(friend => {
-      let foundData = activity.filter(user => user.id === friend);
-      activityData.push(foundData);
-    });
-    return activityData;
-  }
 }
 
 if (typeof module !== 'undefined') {

@@ -88,6 +88,16 @@ class ActivityRepository {
     const index = this.user.findIndex(log => log.date === date);
     return this.user.slice(index - 6, index + 1);
   }
+
+  getFriendsActivityInfo() {
+    let activityData = [];
+    let friendsIds = this.friendIds;
+    friendsIds.forEach(friend => {
+      let foundData = activity.filter(user => user.id === friend);
+      activityData.push(foundData);
+    });
+    return activityData;
+  }
 }
 
 if (typeof module !== 'undefined') {
