@@ -1,3 +1,5 @@
+const weeklyStepsGraph = $('#weekly-steps-graph');
+const weeklyOzGraph = $('#weekly-oz-graph');
 const name = $('#name');
 const address = $('#address');
 const email = $('#email');
@@ -14,7 +16,6 @@ const dailyActivity = $('#daily-activity');
 const weeklySteps = $('#weekly-steps');
 const weeklyMinutes = $('#weekly-minutes');
 const weeklyStairs = $('#weekly-stairs-climbed');
-
 const compareActivity = $('#compare-activity');
 const weeklyActivity = $('#weekly-activity');
 
@@ -59,8 +60,24 @@ function displayDailyOz() {
 
 function displayWeeklyOz() {
   const users = hydrationRepository.weeklyHydrationAvg(getCurrentDate());
-  return users.forEach(log => {
+  const filtered = users.forEach(log => {
     return $(`<li>${log.date}: ${log.numOunces} oz</li>`).appendTo(weeklyOz);
+  });
+
+  new Chart(weeklyOzGraph, {
+    type: 'line',
+
+    data: {
+      labels: ['mon', 'tues', 'wed'],
+      datasets: [{
+        label: 'My First dataset',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [1, 7, 4]
+      }]
+    },
+
+    options: {}
   });
 }
 
@@ -134,4 +151,17 @@ function displayWeeklyActivity() {
     $(`<li>${day.date}: ${day.minutesActive} mins</li>`).appendTo(weeklyMinutes);
     $(`<li>${day.date}: ${day.flightsOfStairs} flights</li>`).appendTo(weeklyStairs);
   });
-}
+};
+
+var myChart = new Chart(weeklyStepsGraph, {
+  type: 'line',
+  data: {
+    labels: ['mon', 'tues', 'wed'],
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [1, 7, 4]
+    }]
+  },
+});
