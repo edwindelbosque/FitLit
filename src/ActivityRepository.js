@@ -89,7 +89,7 @@ class ActivityRepository {
     return this.user.slice(index - 6, index + 1);
   }
 
-  getPostiviteStepsTrends() {
+  getPositiveStepTrends() {
     return this.user.reduce((acc, day, index) => {
       if (index < 2) {
         return acc;
