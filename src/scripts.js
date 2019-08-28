@@ -9,19 +9,14 @@ const strideLength = $('#strideLength');
 const dailyStepGoal = $('#stepGoal');
 const stepCompare = $('#step-compare');
 const dailyOz = $('#daily-oz');
-const weeklyOz = $('#weekly-oz');
 const date = $('#date');
 const yesterdaySleep = $('#yesterday-sleep');
 const weeklySleep = $('#weekly-sleep');
 const allTimeSleep = $('#all-time-sleep');
 const dailyActivity = $('#daily-activity');
-const weeklySteps = $('#weekly-steps');
-const weeklyMinutes = $('#weekly-minutes');
-const weeklyStairs = $('#weekly-stairs-climbed');
 const compareActivity = $('#compare-activity');
 const friendSteps = $('#friend-weekly-steps');
 const stepTrends = $('#step-trends');
-const stepGoalProggress = $('#step-goal-proggress');
 const stepGoalChart = $('#step-goal-chart');
 
 let userIdRandomizer = Math.floor(Math.random() * (50 - 1) + 1);
@@ -34,16 +29,21 @@ $(document).ready(() => {
   let userInfo = userRepository.getUserData();
   updateUserDataDOM(userInfo);
   compareStepGoal(userInfo);
+  onPageLoad();
+});
+
+function onPageLoad() {
   displayDailyOz();
   displayWeeklyOz();
   sleepRepository.sortSleepers();
   displayCurrentDate(getCurrentDate());
   displaySleep();
   displayActivity();
+  displayAverageWeeklyActivity();
   displayWeeklyActivity();
   friendActivityData(getCurrentDate());
-  displayTrends()
-});
+  displayTrends();
+}
 
 function updateUserDataDOM(userInfo) {
   $(`<p>Welcome,</p><h1>${userInfo.name}</h1>`).prependTo(name);
@@ -97,7 +97,8 @@ function compareStepGoal(userInfo) {
 }
 
 function displayDailyOz() {
-  $(`<h5>You have drank <span>${hydrationRepository.totalOzDay(getCurrentDate())}</span> oz today!</h5>`).appendTo(dailyOz);
+  const waterDrank = hydrationRepository.totalOzDay(getCurrentDate());
+  $(`<h5>You have drank <span>${waterDrank}</span> oz today!</h5>`).appendTo(dailyOz);
 }
 
 function displayWeeklyOz() {
@@ -152,9 +153,11 @@ function displaySleep() {
   const userLogsHours = sleepRepository.getAllTimeAvg();
   const userLogsQuality = sleepRepository.getQualitySleepAvg();
   const weeklyData = sleepRepository.weeklySleepData(getCurrentDate());
+  const lastNightSleep = sleepRepository.getDailySleepHours(getCurrentDate());
+  const avgWeeklySleep = sleepRepository.weeklyAvgHours(getCurrentDate());
 
-  $(`<h5>You slept <span>${sleepRepository.getDailySleepHours(getCurrentDate())}</span> hours last night!</h5>`).appendTo(yesterdaySleep);
-  $(`<h5>You slept an average of <span>${sleepRepository.weeklyAvgHours(getCurrentDate())}</span> hours a night this week!</h5>`).appendTo(yesterdaySleep);
+  $(`<h5>You slept <span>${lastNightSleep}</span> hours last night!</h5>`).appendTo(yesterdaySleep);
+  $(`<h5>You slept an average of <span>${avgWeeklySleep}</span> hours a night this week!</h5>`).appendTo(yesterdaySleep);
   $(`<h5>Avg. Hours Slept : <span>${userLogsHours}</span></h5>`).appendTo(allTimeSleep);
   $(`<h5>Avg. Sleep Quality : <span>${userLogsQuality}</span></h5>`).appendTo(allTimeSleep);
 
@@ -164,14 +167,28 @@ function displaySleep() {
 }
 
 function displayActivity() {
-  $(`<li>You took ${activityRepository.getDailyStats(getCurrentDate(), 'numSteps')} steps</li>`).appendTo(dailyActivity);
-  $(`<li>You were active for ${activityRepository.getMinutesActive(getCurrentDate())} minutes</li>`).appendTo(dailyActivity);
-  $(`<li>You walked ${activityRepository.getMilesWalked(getCurrentDate(), userRepository.getUserData())} miles</li>`).appendTo(dailyActivity);
-  $(`<li>You walked ${activityRepository.getKilometersWalked(getCurrentDate(), userRepository.getUserData())} km</li>`).appendTo(dailyActivity);
+  const avgStairsDay = activityRepository.getDailyStats(getCurrentDate(), 'numSteps');
+  const avgMinsDay = activityRepository.getMinutesActive(getCurrentDate());
+  const milesWalked = activityRepository.getMilesWalked(getCurrentDate(), userRepository.getUserData());
+  const kmWalked = activityRepository.getKilometersWalked(getCurrentDate(), userRepository.getUserData());
 
-  $(`<li>${activityRepository.getAverageStairsDay(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'flightsOfStairs')} stairs from the average</li>`).appendTo(compareActivity);
-  $(`<li>${activityRepository.getAverageStepsDay(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'numSteps')}  from the average</li>`).appendTo(compareActivity);
-  $(`<li>${activityRepository.getAvergageMinutesActive(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'minutesActive')} from the average</li>`).appendTo(compareActivity);
+  $(`<li>You took ${avgStairsDay} steps</li>`).appendTo(dailyActivity);
+  $(`<li>You were active for ${avgMinsDay} minutes</li>`).appendTo(dailyActivity);
+  $(`<li>You walked ${milesWalked} miles</li>`).appendTo(dailyActivity);
+  $(`<li>You walked ${kmWalked} km</li>`).appendTo(dailyActivity);
+}
+
+function displayAverageWeeklyActivity() {
+  const averageStairsDay = activityRepository.getAverageStairsDay(getCurrentDate());
+  const averageStepsDay = activityRepository.getAverageStepsDay(getCurrentDate());
+  const averageMinutesDay = activityRepository.getAvergageMinutesActive(getCurrentDate());
+  const getDailyFlights = activityRepository.getDailyStats(getCurrentDate(), 'flightsOfStairs');
+  const getDailySteps = activityRepository.getDailyStats(getCurrentDate(), 'numSteps');
+  const getDailyMinutes = activityRepository.getDailyStats(getCurrentDate(), 'minutesActive');
+
+  $(`<li>${averageStairsDay - getDailyFlights} stairs from the average</li>`).appendTo(compareActivity);
+  $(`<li>${averageStepsDay - getDailySteps}  from the average</li>`).appendTo(compareActivity);
+  $(`<li>${averageMinutesDay - getDailyMinutes} from the average</li>`).appendTo(compareActivity);
 }
 
 function displayWeeklyActivity() {
@@ -243,7 +260,7 @@ function displayFriendsActivity(friendWeeks, friendName, friends) {
   let friendWeekSteps = friendWeeks.reduce((steps, day) => {
     return steps + day.numSteps;
   }, 0);
-  friends.push({ name: friendName, weeklySteps: friendWeekSteps })
+  friends.push({ name: friendName, weeklySteps: friendWeekSteps });
 }
 
 function displayFriendSteps(array) {
