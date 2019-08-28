@@ -107,6 +107,26 @@ h3 {
   border-radius: 4px;
   box-shadow: 10px 10px 30px var(--shadow);
   width: 350px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.steps__article--1 p {
+  margin: 25px 0;
+}
+
+.steps__article--2 ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 80%;
+}
+
+#step-goal-chart {
+  margin-top: 30px;
 }
 
 h5 {
@@ -118,11 +138,9 @@ h5 {
 
 #friend-weekly-steps {
   font-size: 20px;
-  margin-left: 5%;
 }
 
 #friend-weekly-steps li {
-  margin: 15px;
   color: rgb(54, 54, 54);
 }
 
@@ -147,7 +165,7 @@ h5 {
   background: -webkit-linear-gradient(rgb(112, 112, 112), rgb(158, 158, 158));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
 }
 
@@ -155,6 +173,6 @@ h5 {
   background: -webkit-linear-gradient(rgb(160, 85, 42), rgb(252, 112, 77));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
 }

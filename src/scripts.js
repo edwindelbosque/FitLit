@@ -21,6 +21,8 @@ const weeklyStairs = $('#weekly-stairs-climbed');
 const compareActivity = $('#compare-activity');
 const friendSteps = $('#friend-weekly-steps');
 const stepTrends = $('#step-trends');
+const stepGoalProggress = $('#step-goal-proggress');
+const stepGoalChart = $('#step-goal-chart');
 
 let userIdRandomizer = Math.floor(Math.random() * (50 - 1) + 1);
 let userRepository = new UserRepository(userData, userIdRandomizer);
@@ -55,8 +57,43 @@ function compareStepGoal(userInfo) {
   const avgStep = userRepository.getAvgStep();
   const dailyStep = userInfo.dailyStepGoal;
   const numSteps = Math.abs(avgStep - dailyStep);
-  const stepStatus = avgStep > dailyStep ? `under` : `over`;
-  stepCompare.text(`You are ${numSteps} steps ${stepStatus} the average daily goal!`);
+  avgStep >= dailyStep
+    ? stepCompare.append(`<h5>${numSteps} steps until you reach your goal!</h5>`)
+    : stepCompare.append(`<h5>You've reached your daily goal!<h5>`)
+
+  if (dailyStep >= avgStep) {
+    new Chart(stepGoalChart, {
+      type: 'doughnut',
+      data: {
+        labels: ['TODAY', 'GOAL'],
+        datasets: [{
+          label: 'Your weekly steps',
+          backgroundColor: ['#f7be16', 'lightgray'],
+          borderWidth: 3,
+          borderColor: 'white',
+          hoverBackgroundColor: 'pink',
+          hoverBorderColor: 'white',
+          data: [1]
+        }]
+      },
+    });
+  } else {
+    new Chart(stepGoalChart, {
+      type: 'doughnut',
+      data: {
+        labels: ['TODAY', 'GOAL'],
+        datasets: [{
+          label: 'Your weekly steps',
+          backgroundColor: ['#f7be16', 'lightgray'],
+          borderWidth: 3,
+          borderColor: 'white',
+          hoverBackgroundColor: 'pink',
+          hoverBorderColor: 'white',
+          data: [avgStep, dailyStep]
+        }]
+      },
+    });
+  }
 }
 
 function displayDailyOz() {
@@ -201,7 +238,6 @@ function friendActivityData(date) {
   });
   displayFriendSteps(friends);
 }
-
 
 function displayFriendsActivity(friendWeeks, friendName, friends) {
   let friendWeekSteps = friendWeeks.reduce((steps, day) => {
