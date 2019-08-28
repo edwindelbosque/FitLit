@@ -5,8 +5,8 @@ class UserRepository {
     this.friendIds = this.getFriends();
   }
 
-  getUserData() {
-    return this.data.find(user => user.id === this.id);
+  getUserData(id = this.id) {
+    return this.data.find(user => user.id === id);
   }
 
   getAvgStep() {

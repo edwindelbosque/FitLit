@@ -128,6 +128,7 @@ function displaySleep() {
   const weeklyData = sleepRepository.weeklySleepData(getCurrentDate());
 
   $(`<p>You slept ${sleepRepository.getDailySleepHours(getCurrentDate())} hours last night!</p>`).appendTo(yesterdaySleep);
+  $(`<p>You slept an average of ${sleepRepository.weeklyAvgHours(getCurrentDate())} hours a night this week!</p>`).appendTo(yesterdaySleep);
   $(`<li>Hours Slept: ${userLogsHours}</li>`).appendTo(allTimeSleep);
   $(`<li>Quality of sleep: ${userLogsQuality}</li>`).appendTo(allTimeSleep);
 
@@ -140,6 +141,7 @@ function displayActivity() {
   $(`<li>You took ${activityRepository.getDailyStats(getCurrentDate(), 'numSteps')} steps</li>`).appendTo(dailyActivity);
   $(`<li>You were active for ${activityRepository.getMinutesActive(getCurrentDate())} minutes</li>`).appendTo(dailyActivity);
   $(`<li>You walked ${activityRepository.getMilesWalked(getCurrentDate(), userRepository.getUserData())} miles</li>`).appendTo(dailyActivity);
+  $(`<li>You walked ${activityRepository.getKilometersWalked(getCurrentDate(), userRepository.getUserData())} km</li>`).appendTo(dailyActivity);
 
   $(`<li>${activityRepository.getAverageStairsDay(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'flightsOfStairs')} stairs from the average</li>`).appendTo(compareActivity);
   $(`<li>${activityRepository.getAverageStepsDay(getCurrentDate()) - activityRepository.getDailyStats(getCurrentDate(), 'numSteps')}  from the average</li>`).appendTo(compareActivity);
@@ -155,23 +157,33 @@ function displayWeeklyActivity() {
 }
 
 function friendActivityData(date) {
+  let friends = [];
   let findFriends = userRepository.getFriends();
   findFriends.forEach(friend => {
     let friendData = activityRepository.getUserLogs(friend);
+    let friendName = userRepository.getUserData(friend).name;
     let indexDay = friendData.findIndex(user => user.date === date);
     let friendWeeks = friendData.slice(indexDay - 6, indexDay + 1);
-    displayFriendsActivity(friendWeeks);
+    displayFriendsActivity(friendWeeks, friendName, friends);
   });
+  displayFriendSteps(friends);
 }
 
-function displayFriendsActivity(friendWeeks) {
-  let friendId;
+
+function displayFriendsActivity(friendWeeks, friendName, friends) {
   let friendWeekSteps = friendWeeks.reduce((steps, day) => {
-    friendId = day.userID;
     return steps + day.numSteps;
   }, 0);
+  friends.push({ name: friendName, weeklySteps: friendWeekSteps })
+}
 
-  $(`<li class="friendId${friendId}">${friendWeekSteps}</li>`).appendTo(friendSteps);
+function displayFriendSteps(array) {
+  let counter = 0;
+  array.sort((a, b) => b.weeklySteps - a.weeklySteps);
+  array.forEach(friend => {
+    counter++
+    $(`<li>${counter}: ${friend.name} walked ${friend.weeklySteps} steps.</li>`).appendTo(friendSteps);
+  })
 }
 
 
