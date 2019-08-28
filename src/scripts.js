@@ -35,7 +35,7 @@ $(document).ready(() => {
   displayDailyOz();
   displayWeeklyOz();
   sleepRepository.getBestSleepers();
-  displayCurrentDate();
+  displayCurrentDate(getCurrentDate());
   displaySleep();
   displayActivity();
   displayWeeklyActivity();
@@ -44,7 +44,7 @@ $(document).ready(() => {
 });
 
 function updateUserDataDOM(userInfo) {
-  name.text(userInfo.name);
+  $(`<p>Welcome,</p><h1>${userInfo.name}</h1>`).prependTo(name);
   address.text(userInfo.address);
   email.text(userInfo.email);
   strideLength.text(userInfo.strideLength);
@@ -60,30 +60,33 @@ function compareStepGoal(userInfo) {
 }
 
 function displayDailyOz() {
-  dailyOz.text(`You have drank ${hydrationRepository.totalOzDay(getCurrentDate())} oz today!`);
+  $(`<p>You have drank ${hydrationRepository.totalOzDay(getCurrentDate())} oz today!</p>`).appendTo(dailyOz);
 }
 
 function displayWeeklyOz() {
+  let ozs = [];
+  let dates = [];
   const users = hydrationRepository.weeklyHydrationAvg(getCurrentDate());
-  const filtered = users.forEach(log => {
-    return $(`<li>${log.date}: ${log.numOunces} oz</li>`).appendTo(weeklyOz);
+  users.forEach(log => {
+    dates.push(new Date(log.date).toString().slice(0, 3));
+    ozs.push(log.numOunces);
   });
 
-  // new Chart(weeklyOzGraph, {
-  //   type: 'line',
+  new Chart(weeklyOzGraph, {
+    type: 'bar',
 
-  //   data: {
-  //     labels: ['mon', 'tues', 'wed'],
-  //     datasets: [{
-  //       label: 'My First dataset',
-  //       backgroundColor: 'rgb(255, 99, 132)',
-  //       borderColor: 'rgb(255, 99, 132)',
-  //       data: [1, 7, 4]
-  //     }]
-  //   },
+    data: {
+      labels: dates,
+      datasets: [{
+        label: 'My First dataset',
+        backgroundColor: '#6bc5d2',
+        borderColor: '#6bc5d2',
+        data: ozs
+      }]
+    },
 
-  //   options: {}
-  // });
+    options: {}
+  });
 }
 
 function getCurrentDate() {
@@ -104,26 +107,8 @@ function getCurrentDate() {
   return today;
 }
 
-function getCurrentDateDOM() {
-  let today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1;
-  let yyyy = today.getFullYear();
-
-  if (dd < 10) {
-    dd = '0' + dd;
-  }
-
-  if (mm < 10) {
-    mm = '0' + mm;
-  }
-
-  today = `Date: ${mm}/${dd}/${yyyy}`;
-  return today;
-}
-
-function displayCurrentDate() {
-  date.text(getCurrentDateDOM());
+function displayCurrentDate(day) {
+  date.text(`${new Date(day).toString().slice(0, 10)}`);
 }
 
 function displaySleep() {
@@ -159,7 +144,7 @@ function displayWeeklyActivity() {
   let flightLogs = [];
   activityRepository.getWeeklyStats(getCurrentDate()).map(day => {
     stepLogs.push(day.numSteps);
-    dateLogs.push(new Date(day.date).toString().slice(0, 10));
+    dateLogs.push(new Date(day.date).toString().slice(0, 3));
     minuteLogs.push(day.minutesActive);
     flightLogs.push(day.flightsOfStairs);
   });
@@ -170,8 +155,8 @@ function displayWeeklyActivity() {
       labels: dateLogs,
       datasets: [{
         label: 'Your weekly steps',
-        backgroundColor: 'green',
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: '#f7be16',
+        borderColor: '#f7be16',
         data: stepLogs
       }]
     },
@@ -183,8 +168,8 @@ function displayWeeklyActivity() {
       labels: dateLogs,
       datasets: [{
         label: 'Your weekly steps',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: '#00818a',
+        borderColor: '#00818a',
         data: minuteLogs
       }]
     },
@@ -196,8 +181,8 @@ function displayWeeklyActivity() {
       labels: dateLogs,
       datasets: [{
         label: 'Your weekly steps',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: '#293462',
+        borderColor: '#293462',
         data: flightLogs
       }]
     },
@@ -230,7 +215,7 @@ function displayFriendSteps(array) {
   array.sort((a, b) => b.weeklySteps - a.weeklySteps);
   array.forEach(friend => {
     counter++
-    $(`<li>${counter}: ${friend.name} walked ${friend.weeklySteps} steps.</li>`).appendTo(friendSteps);
+    $(`<li class="friend-${counter}">${counter}. <span>${friend.name}</span> <br> --- ${friend.weeklySteps} steps.</li>`).appendTo(friendSteps);
   })
 }
 

@@ -18,10 +18,12 @@
 <body>
   <nav>
     <h2>FitLit</h2>
-    <h5 id="date"></h5>
+    <h6 id="date"></h6>
   </nav>
   <header>
-    <h1 id="name"></h1>
+    <div id="name">
+
+    </div>
     <ul>
       <li>Address: <span id="address"></span></li>
       <li>Email: <span id="email"></span></li>
@@ -34,12 +36,15 @@
       <h3 class="section__h3--title">Steps</h3>
       <section class="steps--container widget--container">
         <article class="steps__article--1 article--widget">
+          <h5>DAILY STEP COUNT</h5>
           <p id="step-compare"></p>
         </article>
         <article class="steps__article--2 article--widget">
-
+          <h5>WEEKLY FRIEND SCOREBOARD</h5>
+          <ul id="friend-weekly-steps"></ul>
         </article>
         <article class="steps__article--3 article--widget" id="step-trends">
+          <h5>TRENDS</h5>
         </article>
       </section>
     </section>
@@ -47,11 +52,12 @@
       <h3 class="section__h3--title">Hydration</h3>
       <section class="hydration--container widget--container">
         <article class="hydration__article--1 article--widget" id="daily-oz">
+          <h5>DAILY OZ</h5>
         </article>
         <article class="hydration__article--2 article--widget">
-          <h5> Weekly Oz</h3>
-            <canvas id="weekly-oz-graph"></canvas>
-            <ul id="weekly-oz"></ul>
+          <h5>WEEKLY OZ</h5>
+          <canvas id="weekly-oz-graph"></canvas>
+          <ul id="weekly-oz"></ul>
         </article>
       </section>
     </section>
@@ -60,12 +66,14 @@
       <h3 class="section__h3--title">Sleep</h3>
       <section class="sleep--container widget--container">
         <article class="sleep__article--1 article--widget" id="yesterday-sleep">
+          <h5>HOURS SLEPT</h5>
         </article>
         <article class="sleep__article--2 article--widget">
+          <h5>YOUR SLEEPING CHART</h5>
           <ul id="weekly-sleep"></ul>
         </article>
         <article class="sleep__article--3 article--widget">
-          <h5>Your all-time sleep averages are:</h5>
+          <h5>ALL-TIME STATS</h5>
           <ul id="all-time-sleep"></ul>
         </article>
       </section>
@@ -74,24 +82,25 @@
       <h3 class="section__h3--title">Activity</h3>
       <section class="activity--container--1 widget--container">
         <article class="activity__article--1 article--widget">
-          <h5>Today's Activity stats:</h5>
+          <h5>TODAY'S ACTIVITY</h5>
           <ul id="daily-activity"></ul>
         </article>
         <article class="activity__article--2 article--widget">
+          <h5>WORLD COMPARISON</h5>
           <ul id="compare-activity"></ul>
         </article>
       </section>
       <section class="activity--container--2 widget--container">
         <article class="activity__article--3 article--widget">
-          <h5>Total Steps This Week:</h5>
+          <h5>WEEKLY STEP COUNT</h5>
           <canvas id="weekly-steps-chart"></canvas>
         </article>
         <article class="activity__article--4 article--widget">
-          <h5>Total Minutes Active This Week:</h5>
+          <h5>WEEKLY MINUTE COUNT</h5>
           <canvas id="weekly-minutes-chart"></canvas>
         </article>
         <article class="activity__article--5 article--widget">
-          <h5>Total Flights of Stairs Climbed This Week:</h5>
+          <h5>WEEKLY FLIGHT COUNT</h5>
           <canvas id="weekly-flights-chart"></canvas>
         </article>
       </section>
