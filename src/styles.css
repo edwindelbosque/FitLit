@@ -129,6 +129,18 @@ h3 {
   margin-top: 30px;
 }
 
+.hydration__article--1 h5,
+.sleep__article--1 h5 {
+  margin-bottom: 25px;
+}
+
+.hydration__article--1 span,
+.sleep__article--1 span {
+  font-weight: bold;
+  font-size: 30px;
+  color: var(--accent-color);
+}
+
 h5 {
   color: rgb(77, 77, 77);
   font-size: 18px;
@@ -177,8 +189,15 @@ h5 {
   font-weight: bold;
 }
 
-.trend-icon {
+.sleep-icon,
+.trend-icon,
+.water-icon {
   width: 40%;
+}
+
+.sleep-icon,
+.water-icon {
+  margin-bottom: 25px;
 }
 
 .steps__article--3 {

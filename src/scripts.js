@@ -97,7 +97,7 @@ function compareStepGoal(userInfo) {
 }
 
 function displayDailyOz() {
-  $(`<p>You have drank ${hydrationRepository.totalOzDay(getCurrentDate())} oz today!</p>`).appendTo(dailyOz);
+  $(`<h5>You have drank <span>${hydrationRepository.totalOzDay(getCurrentDate())}</span> oz today!</h5>`).appendTo(dailyOz);
 }
 
 function displayWeeklyOz() {
@@ -115,7 +115,7 @@ function displayWeeklyOz() {
     data: {
       labels: dates,
       datasets: [{
-        label: 'My First dataset',
+        label: 'Oz water drank',
         backgroundColor: '#6bc5d2',
         borderColor: '#6bc5d2',
         data: ozs
@@ -153,8 +153,8 @@ function displaySleep() {
   const userLogsQuality = sleepRepository.getQualitySleepAvg();
   const weeklyData = sleepRepository.weeklySleepData(getCurrentDate());
 
-  $(`<p>You slept ${sleepRepository.getDailySleepHours(getCurrentDate())} hours last night!</p>`).appendTo(yesterdaySleep);
-  $(`<p>You slept an average of ${sleepRepository.weeklyAvgHours(getCurrentDate())} hours a night this week!</p>`).appendTo(yesterdaySleep);
+  $(`<h5>You slept <span>${sleepRepository.getDailySleepHours(getCurrentDate())}</span> hours last night!</h5>`).appendTo(yesterdaySleep);
+  $(`<h5>You slept an average of <span>${sleepRepository.weeklyAvgHours(getCurrentDate())}</span> hours a night this week!</h5>`).appendTo(yesterdaySleep);
   $(`<li>Hours Slept: ${userLogsHours}</li>`).appendTo(allTimeSleep);
   $(`<li>Quality of sleep: ${userLogsQuality}</li>`).appendTo(allTimeSleep);
 
@@ -204,7 +204,7 @@ function displayWeeklyActivity() {
     data: {
       labels: dateLogs,
       datasets: [{
-        label: 'Your weekly steps',
+        label: 'Your weekly minutes active',
         backgroundColor: '#00818a',
         borderColor: '#00818a',
         data: minuteLogs
@@ -217,7 +217,7 @@ function displayWeeklyActivity() {
     data: {
       labels: dateLogs,
       datasets: [{
-        label: 'Your weekly steps',
+        label: 'Your weekly flights of stairs',
         backgroundColor: '#293462',
         borderColor: '#293462',
         data: flightLogs
