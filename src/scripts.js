@@ -18,6 +18,7 @@ const weeklyMinutes = $('#weekly-minutes');
 const weeklyStairs = $('#weekly-stairs-climbed');
 const compareActivity = $('#compare-activity');
 const friendSteps = $('#friend-weekly-steps');
+const stepTrends = $('#step-trends');
 
 let userIdRandomizer = Math.floor(Math.random() * (50 - 1) + 1);
 let userRepository = new UserRepository(userData, userIdRandomizer);
@@ -37,6 +38,7 @@ $(document).ready(() => {
   displayActivity();
   displayWeeklyActivity();
   friendActivityData(getCurrentDate());
+  displayTrends()
 });
 
 function updateUserDataDOM(userInfo) {
@@ -186,7 +188,12 @@ function displayFriendSteps(array) {
   })
 }
 
-
+function displayTrends() {
+  let positiveTrend = activityRepository.getPositiveStepTrends().length;
+  let negativeTrend = activityRepository.getNegativeStepTrends().length;
+  $(`<p>Since joining you've had ${positiveTrend} positive trends</p>`).appendTo(stepTrends);
+  $(`<p>and ${negativeTrend} negative trends.</p>`).appendTo(stepTrends);
+}
 
 // var myChart = new Chart(weeklyStepsGraph, {
 //   type: 'line',
