@@ -1,4 +1,6 @@
-const weeklyStepsGraph = $('#weekly-steps-graph');
+const weeklyStepsChart = $('#weekly-steps-chart');
+const weeklyMinutesChart = $('#weekly-minutes-chart');
+const weeklyFlightsChart = $('#weekly-flights-chart');
 const weeklyOzGraph = $('#weekly-oz-graph');
 const name = $('#name');
 const address = $('#address');
@@ -151,10 +153,54 @@ function displayActivity() {
 }
 
 function displayWeeklyActivity() {
-  activityRepository.getWeeklyStats(getCurrentDate()).forEach(day => {
-    $(`<li>${day.date}: ${day.numSteps} steps</li>`).appendTo(weeklySteps);
-    $(`<li>${day.date}: ${day.minutesActive} mins</li>`).appendTo(weeklyMinutes);
-    $(`<li>${day.date}: ${day.flightsOfStairs} flights</li>`).appendTo(weeklyStairs);
+  let stepLogs = [];
+  let dateLogs = [];
+  let minuteLogs = [];
+  let flightLogs = [];
+  activityRepository.getWeeklyStats(getCurrentDate()).map(day => {
+    stepLogs.push(day.numSteps);
+    dateLogs.push(new Date(day.date).toString().slice(0, 10));
+    minuteLogs.push(day.minutesActive);
+    flightLogs.push(day.flightsOfStairs);
+  });
+
+  new Chart(weeklyStepsChart, {
+    type: 'bar',
+    data: {
+      labels: dateLogs,
+      datasets: [{
+        label: 'Your weekly steps',
+        backgroundColor: 'green',
+        borderColor: 'rgb(255, 99, 132)',
+        data: stepLogs
+      }]
+    },
+  });
+
+  new Chart(weeklyMinutesChart, {
+    type: 'bar',
+    data: {
+      labels: dateLogs,
+      datasets: [{
+        label: 'Your weekly steps',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: minuteLogs
+      }]
+    },
+  });
+
+  new Chart(weeklyFlightsChart, {
+    type: 'bar',
+    data: {
+      labels: dateLogs,
+      datasets: [{
+        label: 'Your weekly steps',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: flightLogs
+      }]
+    },
   });
 }
 
@@ -194,17 +240,3 @@ function displayTrends() {
   $(`<p>Since joining you've had ${positiveTrend} positive trends</p>`).appendTo(stepTrends);
   $(`<p>and ${negativeTrend} negative trends.</p>`).appendTo(stepTrends);
 }
-
-// var myChart = new Chart(weeklyStepsGraph, {
-//   type: 'line',
-//   data: {
-//     labels: ['mon', 'tues', 'wed'],
-//     datasets: [{
-//       label: 'My First dataset',
-//       backgroundColor: 'rgb(255, 99, 132)',
-//       borderColor: 'rgb(255, 99, 132)',
-//       data: [1, 7, 4]
-//     }]
-//   },
-// });
-
