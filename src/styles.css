@@ -34,6 +34,10 @@ nav {
   width: 100%;
 }
 
+h6 {
+  font-size: 20px;
+}
+
 header {
   align-items: center;
   display: flex;
@@ -43,9 +47,15 @@ header {
   width: 80%;
 }
 
+header p {
+  color: #dbdbdb;
+  font-size: 18px;
+}
+
 h1 {
   color: var(--accent-color);
   font-size: 40px;
+  margin: 3px 0 0 0;
 }
 
 ul {
@@ -63,7 +73,7 @@ span {
 }
 
 main {
-  width: 80%;
+  width: 1150px;
 }
 
 .main__sections {
@@ -96,6 +106,73 @@ h3 {
   background-color: var(--box-background);
   border-radius: 4px;
   box-shadow: 10px 10px 30px var(--shadow);
-  width: 32%;
-  height: 260px;
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.steps__article--1 p {
+  margin: 25px 0;
+}
+
+.steps__article--2 ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 80%;
+}
+
+#step-goal-chart {
+  margin-top: 30px;
+}
+
+h5 {
+  color: rgb(77, 77, 77);
+  font-size: 18px;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+#friend-weekly-steps {
+  font-size: 20px;
+}
+
+#friend-weekly-steps li {
+  color: rgb(54, 54, 54);
+}
+
+.friend-1 span,
+.friend-2 span,
+.friend-3 span,
+.friend-4 span,
+.friend-5 span {
+  color: rgb(110, 110, 110);
+  font-size: 18px;
+}
+
+.friend-1 span {
+  background: -webkit-linear-gradient(rgb(240, 168, 61), rgb(240, 207, 61));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.friend-2 span {
+  background: -webkit-linear-gradient(rgb(112, 112, 112), rgb(158, 158, 158));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.friend-3 span {
+  background: -webkit-linear-gradient(rgb(160, 85, 42), rgb(252, 112, 77));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 18px;
+  font-weight: bold;
 }
