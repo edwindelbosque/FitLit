@@ -2,11 +2,11 @@ class ActivityRepository {
   constructor(id, activityData) {
     this.id = id;
     this.activityData = activityData;
-    this.user = this.getUserLogs();
+    this.user = this.getUserLogs(id);
   }
 
-  getUserLogs() {
-    return this.activityData.filter(user => user.userID === this.id)
+  getUserLogs(id) {
+    return this.activityData.filter(user => user.userID === id);
   }
 
   getMilesWalked(date, user) {
@@ -89,15 +89,6 @@ class ActivityRepository {
     return this.user.slice(index - 6, index + 1);
   }
 
-  getFriendsActivityInfo() {
-    let activityData = [];
-    let friendsIds = this.friendIds;
-    friendsIds.forEach(friend => {
-      let foundData = activity.filter(user => user.id === friend);
-      activityData.push(foundData);
-    });
-    return activityData;
-  }
 }
 
 if (typeof module !== 'undefined') {
