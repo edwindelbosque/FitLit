@@ -46,7 +46,7 @@ describe('ActivityRepository', () => {
     expect(activityRepository).to.be.an.instanceOf(ActivityRepository);
   });
 
-  it('should return the miles a user has walked based on their number of steps and stride length', () => {
+  it('should return miles user has walked from their number of steps and stride length', () => {
     expect(activityRepository.getMilesWalked('2019/08/25', user)).to.equal(5.7);
   });
 

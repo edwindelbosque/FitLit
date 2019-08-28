@@ -80,7 +80,11 @@ class SleepRepository {
         totalQual += day.sleepQuality;
         return totalQual;
       }, 0);
-      acc.push({ id: acc.length + 1, avgQual: parseFloat((avgQual / 7).toFixed(1)) });
+      acc.push(
+        {
+          id: acc.length + 1,
+          avgQual: parseFloat((avgQual / 7).toFixed(1))
+        });
       return acc;
     }, []);
 
@@ -89,7 +93,9 @@ class SleepRepository {
 
   getMaxSleepers(date) {
     let specificDate = this.sleepData.filter(day => day.date === date);
-    let maxSleepHours = Math.max.apply(Math, specificDate.map((log) => log.hoursSlept));
+    let maxSleepHours = Math.max.apply(Math, specificDate.map((log) => {
+      return log.hoursSlept;
+    }));
     return specificDate.filter(user => user.hoursSlept === maxSleepHours);
   }
 

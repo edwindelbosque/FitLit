@@ -45,15 +45,15 @@ describe('HydrationRepository', () => {
     );
   });
 
-  it('should return the average fluid ounces consumed per day for all time', () => {
+  it('should return the average fluid oz consumed per day for all time', () => {
     expect(hydrationRepository.getAllTimeAvg()).to.equal(70);
   });
 
-  it('should return how many fluid ounces they consumed for a specific day', () => {
+  it('should return how many fluid oz they consumed for a specific day', () => {
     expect(hydrationRepository.totalOzDay('2019/08/22')).to.equal(58);
   });
 
-  it('should return how many fluid ounces of water consumed each day over the course of a week', () => {
+  it('should return fluid oz of water consumed each day over the course of a week', () => {
     expect(hydrationRepository.weeklyHydrationAvg('2019/08/22')).to.deep.equal(
       [
         { userID: 12, date: '2019/08/16', numOunces: 37 },
