@@ -100,13 +100,13 @@ class SleepRepository {
   }
 
   weeklyAvgHours(date) {
-    let totalWeeklyHours = this.weeklySleepData(date).reduce((totalHours, day) => {
+    let weeklySleep = this.weeklySleepData(date)
+    let totalWeeklyHours = weeklySleep.reduce((totalHours, day) => {
       totalHours += day.hoursSlept;
       return totalHours;
     }, 0);
     return parseFloat((totalWeeklyHours / 7).toFixed(1));
   }
-
 }
 
 if (typeof module !== 'undefined') {

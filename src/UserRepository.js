@@ -29,7 +29,6 @@ class UserRepository {
     });
     return friendsData;
   }
-
 }
 
 if (typeof module !== 'undefined') {
