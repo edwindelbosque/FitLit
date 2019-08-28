@@ -258,6 +258,6 @@ function displayFriendSteps(array) {
 function displayTrends() {
   let positiveTrend = activityRepository.getPositiveStepTrends().length;
   let negativeTrend = activityRepository.getNegativeStepTrends().length;
-  $(`<p>Since joining you've had ${positiveTrend} positive trends</p>`).appendTo(stepTrends);
-  $(`<p>and ${negativeTrend} negative trends.</p>`).appendTo(stepTrends);
+  $(`<p>Since joining you've had:</p> <p><span>${positiveTrend}</span> positive trends</p>`).appendTo(stepTrends);
+  $(`<p><span>${negativeTrend}</span> negative trends</p>`).appendTo(stepTrends);
 }
