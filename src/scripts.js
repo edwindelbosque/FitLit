@@ -17,7 +17,7 @@ const weeklySteps = $('#weekly-steps');
 const weeklyMinutes = $('#weekly-minutes');
 const weeklyStairs = $('#weekly-stairs-climbed');
 const compareActivity = $('#compare-activity');
-const weeklyActivity = $('#weekly-activity');
+const friendSteps = $('#friend-weekly-steps');
 
 let userIdRandomizer = Math.floor(Math.random() * (50 - 1) + 1);
 let userRepository = new UserRepository(userData, userIdRandomizer);
@@ -36,6 +36,7 @@ $(document).ready(() => {
   displaySleep();
   displayActivity();
   displayWeeklyActivity();
+  friendActivityData(getCurrentDate());
 });
 
 function updateUserDataDOM(userInfo) {
@@ -64,21 +65,21 @@ function displayWeeklyOz() {
     return $(`<li>${log.date}: ${log.numOunces} oz</li>`).appendTo(weeklyOz);
   });
 
-  new Chart(weeklyOzGraph, {
-    type: 'line',
+  // new Chart(weeklyOzGraph, {
+  //   type: 'line',
 
-    data: {
-      labels: ['mon', 'tues', 'wed'],
-      datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [1, 7, 4]
-      }]
-    },
+  //   data: {
+  //     labels: ['mon', 'tues', 'wed'],
+  //     datasets: [{
+  //       label: 'My First dataset',
+  //       backgroundColor: 'rgb(255, 99, 132)',
+  //       borderColor: 'rgb(255, 99, 132)',
+  //       data: [1, 7, 4]
+  //     }]
+  //   },
 
-    options: {}
-  });
+  //   options: {}
+  // });
 }
 
 function getCurrentDate() {
@@ -151,17 +152,40 @@ function displayWeeklyActivity() {
     $(`<li>${day.date}: ${day.minutesActive} mins</li>`).appendTo(weeklyMinutes);
     $(`<li>${day.date}: ${day.flightsOfStairs} flights</li>`).appendTo(weeklyStairs);
   });
-};
+}
 
-var myChart = new Chart(weeklyStepsGraph, {
-  type: 'line',
-  data: {
-    labels: ['mon', 'tues', 'wed'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: [1, 7, 4]
-    }]
-  },
-});
+function friendActivityData(date) {
+  let findFriends = userRepository.getFriends();
+  findFriends.forEach(friend => {
+    let friendData = activityRepository.getUserLogs(friend);
+    let indexDay = friendData.findIndex(user => user.date === date);
+    let friendWeeks = friendData.slice(indexDay - 6, indexDay + 1);
+    displayFriendsActivity(friendWeeks);
+  });
+}
+
+function displayFriendsActivity(friendWeeks) {
+  let friendId;
+  let friendWeekSteps = friendWeeks.reduce((steps, day) => {
+    friendId = day.userID;
+    return steps + day.numSteps;
+  }, 0);
+
+  $(`<li class="friendId${friendId}">${friendWeekSteps}</li>`).appendTo(friendSteps);
+}
+
+
+
+// var myChart = new Chart(weeklyStepsGraph, {
+//   type: 'line',
+//   data: {
+//     labels: ['mon', 'tues', 'wed'],
+//     datasets: [{
+//       label: 'My First dataset',
+//       backgroundColor: 'rgb(255, 99, 132)',
+//       borderColor: 'rgb(255, 99, 132)',
+//       data: [1, 7, 4]
+//     }]
+//   },
+// });
+

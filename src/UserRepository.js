@@ -17,7 +17,7 @@ class UserRepository {
   }
 
   getFriends() {
-    this.getUserData().friends;
+    return this.getUserData().friends;
   }
 
   getFriendsUserInfo() {
