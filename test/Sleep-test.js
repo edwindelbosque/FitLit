@@ -81,11 +81,11 @@ describe('SleepRepository', () => {
   });
 
   it('should return the user"s average number of hours slept per day', () => {
-    expect(sleepRepository.getAllTimeAvg()).to.equal(9); //8.55555555
+    expect(sleepRepository.getAllTimeAvg()).to.equal(9);
   });
 
   it('should return the user"s average sleep quality per day over all time', () => {
-    expect(sleepRepository.getQualitySleepAvg()).to.equal(2.9); //2.8555555
+    expect(sleepRepository.getQualitySleepAvg()).to.equal(2.9);
   });
 
   it('should return how many hours the user slept for a specific day', () => {
@@ -106,7 +106,7 @@ describe('SleepRepository', () => {
     );
   });
 
-  it('should return the user"s number of hours slept each day over the course of a given week', () => {
+  it('should return the number of hours slept each day over the course of a given week', () => {
     expect(sleepRepository.getWeeklyHours('2019/08/22')).to.deep.equal(
       [
         { date: "2019/08/16", hoursSlept: 9.9 },
@@ -120,7 +120,7 @@ describe('SleepRepository', () => {
     );
   });
 
-  it('should return the user"s sleep quality each day over the course of a given week', () => {
+  it('should return the sleep quality each day over the course of a given week', () => {
     expect(sleepRepository.getWeeklyQuality('2019/08/22')).to.deep.equal(
       [
         { date: "2019/08/16", sleepQuality: 2.8 },
@@ -159,6 +159,6 @@ describe('SleepRepository', () => {
 
   it('should return the the weekly average hours slept for one user', () => {
     expect(sleepRepository2.weeklyAvgHours('2019/08/21')).to.equal(8.4);
-  })
+  });
 
 });
