@@ -36,7 +36,7 @@ $(document).ready(() => {
   compareStepGoal(userInfo);
   displayDailyOz();
   displayWeeklyOz();
-  sleepRepository.getBestSleepers();
+  sleepRepository.sortSleepers();
   displayCurrentDate(getCurrentDate());
   displaySleep();
   displayActivity();
