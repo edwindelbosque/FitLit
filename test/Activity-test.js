@@ -2,7 +2,6 @@ const chai = require('chai');
 const expect = chai.expect;
 const ActivityRepository = require('../src/ActivityRepository');
 const User = require('../src/User.js');
-const UserRepository = require('../src/UserRepository');
 
 let activityRepository, activityData, user, sampleData;
 
@@ -48,7 +47,7 @@ describe('ActivityRepository', () => {
   });
 
   it('should return the miles a user has walked based on their number of steps and stride length', () => {
-    expect(activityRepository.getMilesWalked('2019/08/25', user)).to.equal(5.7); //5.66787878.......
+    expect(activityRepository.getMilesWalked('2019/08/25', user)).to.equal(5.7);
   });
 
   it('should return how many minutes the user was active for a given day', () => {
@@ -56,7 +55,7 @@ describe('ActivityRepository', () => {
   });
 
   it('should return how many minutes active the user averaged for the week', () => {
-    expect(activityRepository.getAverageActivity('2019/08/24')).to.equal(370); //369.714286
+    expect(activityRepository.getAverageActivity('2019/08/24')).to.equal(370);
   });
 
   it('should return whether a user met their daily step goal for a given date', () => {

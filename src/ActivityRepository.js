@@ -9,15 +9,21 @@ class ActivityRepository {
     return this.activityData.filter(user => user.userID === id);
   }
 
+  getUserDate(date) {
+    return this.user.find(log => log.date === date);
+  }
+
+  getFilteredDate(date) {
+    return this.activityData.filter(log => log.date === date);
+  }
+
   getMilesWalked(date, user) {
-    const activityDate = this.user.find(log => log.date === date);
-    const miles = (user.strideLength * activityDate.numSteps) / 5280;
+    const miles = (user.strideLength * this.getUserDate(date).numSteps) / 5280;
     return parseFloat(miles.toFixed(1));
   }
 
   getMinutesActive(date) {
-    const activityDate = this.user.find(log => log.date === date);
-    return activityDate.minutesActive;
+    return this.getUserDate(date).minutesActive;
   }
 
   getAverageActivity(date) {
@@ -31,25 +37,33 @@ class ActivityRepository {
   }
 
   reachedDailyStepGoal(date, user) {
-    const dateSteps = this.user.find(log => log.date === date).numSteps;
     const stepGoal = user.dailyStepGoal;
-    return dateSteps >= stepGoal;
+    return this.getUserDate(date) >= stepGoal;
   }
 
   getAllTimeExceededSteps(user) {
-    let exceededStepGoalDates = this.user.filter(log => log.numSteps >= user.dailyStepGoal);
+    let exceededStepGoalDates = this.user.filter(log => {
+      return log.numSteps >= user.dailyStepGoal;
+    });
     return exceededStepGoalDates.map(log => {
       return { "date": log.date, "numSteps": log.numSteps };
     });
   }
 
   getAllTimeStairClimb() {
-    const maxFlightsClimbed = this.user.find(log => log.flightsOfStairs === Math.max.apply(Math, this.user.map(log => log.flightsOfStairs)));
-    return { "date": maxFlightsClimbed.date, "flightsOfStairs": maxFlightsClimbed.flightsOfStairs }
+    const maxFlightsClimbed = this.user.find(log => {
+      return log.flightsOfStairs === Math.max.apply(Math, this.user.map(log => {
+        return log.flightsOfStairs;
+      }));
+    });
+    return {
+      "date": maxFlightsClimbed.date,
+      "flightsOfStairs": maxFlightsClimbed.flightsOfStairs
+    };
   }
 
   getAverageStairsDay(date) {
-    const filteredDate = this.activityData.filter(log => log.date === date);
+    const filteredDate = this.getFilteredDate(date);
     const totalStairs = filteredDate.reduce((total, log) => {
       total += log.flightsOfStairs;
       return total;
@@ -58,7 +72,7 @@ class ActivityRepository {
   }
 
   getAverageStepsDay(date) {
-    const filteredDate = this.activityData.filter(log => log.date === date);
+    const filteredDate = this.getFilteredDate(date);
     const totalSteps = filteredDate.reduce((total, log) => {
       total += log.numSteps;
       return total;
@@ -67,7 +81,7 @@ class ActivityRepository {
   }
 
   getAvergageMinutesActive(date) {
-    const filteredDate = this.activityData.filter(log => log.date === date);
+    const filteredDate = this.getFilteredDate(date);
     const totalMinutes = filteredDate.reduce((total, log) => {
       total += log.minutesActive;
       return total;
@@ -81,7 +95,7 @@ class ActivityRepository {
   }
 
   getDailyStats(date, detail) {
-    return this.user.find(log => log.date === date)[detail];
+    return this.getUserDate(date)[detail];
   }
 
   getWeeklyStats(date) {
