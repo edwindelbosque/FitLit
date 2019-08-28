@@ -220,3 +220,24 @@ color: var(--accent-color)
   justify-content: space-evenly;
   height: 120px;
 }
+
+.all-time-sleep {
+  margin-bottom: 30px;
+}
+
+.all-time-sleep span {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--accent-color)
+}
+
+.all-time-sleep h5 {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.exercise-icon {
+  width: 150px;
+  height: 150px;
+  margin-top: 30px;
+}
