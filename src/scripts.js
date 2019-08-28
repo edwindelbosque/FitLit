@@ -155,8 +155,8 @@ function displaySleep() {
 
   $(`<h5>You slept <span>${sleepRepository.getDailySleepHours(getCurrentDate())}</span> hours last night!</h5>`).appendTo(yesterdaySleep);
   $(`<h5>You slept an average of <span>${sleepRepository.weeklyAvgHours(getCurrentDate())}</span> hours a night this week!</h5>`).appendTo(yesterdaySleep);
-  $(`<li>Hours Slept: ${userLogsHours}</li>`).appendTo(allTimeSleep);
-  $(`<li>Quality of sleep: ${userLogsQuality}</li>`).appendTo(allTimeSleep);
+  $(`<h5>Avg. Hours Slept : <span>${userLogsHours}</span></h5>`).appendTo(allTimeSleep);
+  $(`<h5>Avg. Sleep Quality : <span>${userLogsQuality}</span></h5>`).appendTo(allTimeSleep);
 
   weeklyData.forEach(day => {
     return $(`<li>${day.date}: ${day.hoursSlept} hours, ${day.sleepQuality} qual</li>`).appendTo(weeklySleep);
