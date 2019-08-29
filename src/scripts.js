@@ -174,19 +174,18 @@ function displaySleep() {
   });
 
   new Chart(weeklySleep, {
-    type: 'bar',
+    type: 'line',
     data: {
       datasets: [{
-        label: 'Hours Slept',
-        data: hoursSlept,
-        backgroundColor: '#0153928c',
-        borderColor: '#01539230'
-      }, {
         label: 'Quality Level',
         data: sleepQualities,
         backgroundColor: '#00818a',
-        borderColor: '#00818a',
-
+        borderColor: '#02646b',
+      }, {
+        label: 'Hours Slept',
+        data: hoursSlept,
+        backgroundColor: '#0153928c',
+        borderColor: '#0153923c',
         // Changes this dataset to become a line
         type: 'line'
       }],
