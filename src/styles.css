@@ -9,7 +9,6 @@
 
 * {
   box-sizing: border-box;
-  /* border: 1px solid red; */
   margin: 0;
   padding: 0;
 }
@@ -23,28 +22,28 @@ body {
 }
 
 nav {
-  background-image: linear-gradient(white, rgb(226, 226, 226));
-  color: #2b8b9e;
-  height: 50px;
-  font-size: 18px;
-  width: 100%;
-  display: flex;
   align-items: center;
+  background-image: linear-gradient(white, #e2e2e2);
+  color: #2b8b9e;
+  display: flex;
+  font-size: 18px;
+  height: 50px;
   justify-content: center;
+  width: 100%;
 }
 
 nav div {
   align-items: center;
-  width: 1100px;
   display: flex;
   justify-content: space-between;
+  width: 1100px;
 }
 
 header ul {
-  margin-top: 10px;
   background-color: #23586385;
-  padding: 10px;
   border-radius: 3px;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 h6 {
@@ -80,7 +79,7 @@ ul {
 }
 
 li {
-  color: rgb(212, 212, 212);
+  color: #d4d4d4;
   font-size: 80%;
   font-weight: 700;
 }
@@ -109,8 +108,8 @@ main {
 }
 
 h3 {
-  margin-bottom: 12px;
   color: var(--accent-color);
+  margin-bottom: 12px;
 }
 
 .widget--container {
@@ -120,14 +119,14 @@ h3 {
 }
 
 .article--widget {
+  align-items: center;
   background-color: var(--box-background);
   border-radius: 4px;
   box-shadow: 10px 10px 30px var(--shadow);
-  width: 350px;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  width: 350px;
 }
 
 .steps__article--1 p {
@@ -152,9 +151,9 @@ h3 {
 
 .hydration__article--1 span,
 .sleep__article--1 span {
-  font-weight: bold;
-  font-size: 30px;
   color: var(--accent-color);
+  font-size: 30px;
+  font-weight: bold;
 }
 
 #yesterday-sleep h5 {
@@ -166,7 +165,7 @@ h3 {
 }
 
 h5 {
-  color: rgb(77, 77, 77);
+  color: #4d4d4d;
   font-size: 18px;
   margin: 10px 0 0 0;
   text-align: center;
@@ -177,7 +176,7 @@ h5 {
 }
 
 #friend-weekly-steps li {
-  color: rgb(54, 54, 54);
+  color: #363636;
 }
 
 .friend-1 span,
@@ -185,38 +184,42 @@ h5 {
 .friend-3 span,
 .friend-4 span,
 .friend-5 span {
-  color: rgb(110, 110, 110);
+  color: #6e6e6e;
   font-size: 18px;
 }
 
 .friend-1 span {
-  background: -webkit-linear-gradient(rgb(240, 168, 61), rgb(240, 207, 61));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(#f0a83d, #f0cf3d);
   font-size: 28px;
   font-weight: bold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .friend-2 span {
-  background: -webkit-linear-gradient(rgb(112, 112, 112), rgb(158, 158, 158));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(#707070, #9e9e9e);
   font-size: 22px;
   font-weight: bold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .friend-3 span {
-  background: -webkit-linear-gradient(rgb(160, 85, 42), rgb(252, 112, 77));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(#a0552a, #fc704d);
   font-size: 18px;
   font-weight: bold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .sleep-icon,
 .trend-icon,
 .water-icon {
   width: 45%;
+}
+
+.man-icon {
+  width: 400px;
 }
 
 .sleep-icon {
@@ -237,29 +240,25 @@ h5 {
   margin-bottom: 80px;
 }
 
-.sleep__article--2 {
-
-}
-
 .steps__article--3 {
-  font-weight: bold;
+  color: #4e4e4e;
   font-size: 20px;
-  color: rgb(78, 78, 78);
+  font-weight: bold;
   }
 
 .steps__article--3 span {
-font-weight: bold;
-font-size: 30px;
-color: var(--accent-color)
+  color: var(--accent-color);
+  font-size: 30px;
+  font-weight: bold;
 }
 
 #step-trends {
-  margin-bottom: 25px;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
   height: 120px;
+  margin-bottom: 25px;
 }
 
 .all-time-sleep {
@@ -267,9 +266,9 @@ color: var(--accent-color)
 }
 
 .all-time-sleep span {
-  font-size: 25px;
+  color: var(--accent-color);
+  font-size: 32px;
   font-weight: bold;
-  color: var(--accent-color)
 }
 
 .all-time-sleep h5 {
@@ -279,22 +278,23 @@ color: var(--accent-color)
 
 .exercise-icon {
   margin-top: 15px;
-  width: 37%;
+  width: 44%;
 }
 
 .article__widget--div h5 {
+  color: #5f5f5f;
   text-align: left;
-  color: rgb(107, 107, 107);
 }
 
 .article__widget--div {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  width: 85%;
 }
 
 .article__widget--div span {
-  color: rgb(137, 190, 67);
-  font-weight: bold;
+  color: #89be43;
   font-size: 22px;
+  font-weight: bold;
 }
 
 .activity--container--2 {
@@ -308,12 +308,17 @@ color: var(--accent-color)
 
 #compare-activity {
   margin-bottom: 15px;
+  width: 82%;
 }
 
 #compare-activity span {
-  font-weight: bold;
   color: var(--accent-color);
   font-size: 23px;
+  font-weight: bold;
+}
+
+#compare-activity h5 {
+  text-align: left;
 }
 
 #weekly-steps-chart,
