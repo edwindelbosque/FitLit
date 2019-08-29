@@ -4,7 +4,7 @@
 ## General Info
 
 We were given a dataset from the Mod 2 instructors at Turing and had to take the data and display it in a meaningful way.
-The repository can be found <a href="https://github.com/SamuelColeman/idea-box">here</a>. The project specs can be found <a href="https://frontend.turing.io/projects/fitlit.html">here</a>. The live page can be accessed <a href="https://edwindelbosque.github.io/FitLit/">here</a>.
+The repository can be found <a href="https://github.com/edwindelbosque/FitLit">here</a>. The project specs can be found <a href="https://frontend.turing.io/projects/fitlit.html">here</a>. The live page can be accessed <a href="https://edwindelbosque.github.io/FitLit/">here</a>.
 
 ## Contributors 
 
