@@ -279,7 +279,7 @@ color: var(--accent-color)
 
 .exercise-icon {
   margin-top: 15px;
-  width: 40%;
+  width: 37%;
 }
 
 .article__widget--div h5 {
@@ -303,6 +303,7 @@ color: var(--accent-color)
 
 .globe-icon {
   height: 160px;
+  margin-top: 15px;
 }
 
 #compare-activity {
@@ -313,4 +314,10 @@ color: var(--accent-color)
   font-weight: bold;
   color: var(--accent-color);
   font-size: 23px;
+}
+
+#weekly-steps-chart,
+#weekly-minutes-chart,
+#weekly-flights-chart {
+  margin: 25px 0;
 }
