@@ -61,33 +61,33 @@ class SleepRepository {
     }, []);
   }
 
-  sortSleepers(date) {
+  getBestSleepers(date) {
     let sorted = [];
+
     this.getAllIds().forEach(id => {
       let userLogs = this.sleepData.filter(log => log.userID === id);
       sorted.push(userLogs);
     });
-    this.getAllWeeklyData(date, sorted);
-  }
 
-  getAllWeeklyData(date, sorted) {
     let allWeeklyData = sorted.reduce((accumulator, user) => {
       let i = user.findIndex(log => log.date === date);
       accumulator.push(user.slice(i - 6, i + 1));
       return accumulator;
     }, []);
-    this.getAllAverages(allWeeklyData);
-  }
 
-  getAllAverages(allWeeklyData) {
     let allAverages = allWeeklyData.reduce((acc, user) => {
       let avgQual = user.reduce((totalQual, day) => {
         totalQual += day.sleepQuality;
         return totalQual;
       }, 0);
-      acc.push({ id: acc.length + 1, avgQual: parseFloat((avgQual / 7).toFixed(1)) });
+      acc.push(
+        {
+          id: acc.length + 1,
+          avgQual: parseFloat((avgQual / 7).toFixed(1))
+        });
       return acc;
     }, []);
+
     return allAverages.filter(user => user.avgQual > 3);
   }
 
