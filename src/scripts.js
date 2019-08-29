@@ -37,7 +37,7 @@ $(document).ready(() => {
 function onPageLoad() {
   displayDailyOz();
   displayWeeklyOz();
-  sleepRepository.sortSleepers();
+  sleepRepository.getBestSleepers();
   displayCurrentDate(getCurrentDate());
   displaySleep();
   displayActivity();
