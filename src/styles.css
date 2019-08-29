@@ -140,8 +140,7 @@ h3 {
   margin-top: 30px;
 }
 
-.hydration__article--1 h5,
-.sleep__article--1 h5 {
+.hydration__article--1 h5 {
   margin-bottom: 25px;
 }
 
@@ -150,6 +149,14 @@ h3 {
   font-weight: bold;
   font-size: 30px;
   color: var(--accent-color);
+}
+
+#yesterday-sleep h5 {
+  margin-top: 0;
+}
+
+#yesterday-sleep {
+  margin-bottom: 20px;
 }
 
 h5 {
@@ -203,7 +210,11 @@ h5 {
 .sleep-icon,
 .trend-icon,
 .water-icon {
-  width: 40%;
+  width: 45%;
+}
+
+.sleep-icon {
+  margin: 25px 0 0 0;
 }
 
 .step-icon {
@@ -214,6 +225,14 @@ h5 {
 .sleep-icon,
 .water-icon {
   margin-bottom: 25px;
+}
+
+#weekly-sleep {
+  margin-bottom: 80px;
+}
+
+.sleep__article--2 {
+
 }
 
 .steps__article--3 {
@@ -253,7 +272,8 @@ color: var(--accent-color)
 }
 
 .exercise-icon {
-  width: 35%;
+  margin-top: 15px;
+  width: 40%;
 }
 
 .article__widget--div h5 {
@@ -271,6 +291,20 @@ color: var(--accent-color)
   font-size: 22px;
 }
 
-.activity--container--1 {
-  margin-bottom: 20px;
+.activity--container--2 {
+  margin: 25px 0;
+}
+
+.globe-icon {
+  height: 160px;
+}
+
+#compare-activity {
+  margin-bottom: 15px;
+}
+
+#compare-activity span {
+  font-weight: bold;
+  color: var(--accent-color);
+  font-size: 23px;
 }
