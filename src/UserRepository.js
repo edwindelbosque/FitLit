@@ -29,6 +29,14 @@ class UserRepository {
     });
     return friendsData;
   }
+
+  getFriendsName() {
+    return this.getFriendsUserInfo().reduce((acc, friend) => {
+      acc.push(friend.name.split(' ')[0]);
+      return acc
+    }, []);
+  }
+
 }
 
 if (typeof module !== 'undefined') {

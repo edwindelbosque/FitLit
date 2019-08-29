@@ -18,12 +18,14 @@ const compareActivity = $('#compare-activity');
 const friendSteps = $('#friend-weekly-steps');
 const stepTrends = $('#step-trends');
 const stepGoalChart = $('#step-goal-chart');
+const friendList = $('#friend-list');
 
 let userIdRandomizer = Math.floor(Math.random() * (50 - 1) + 1);
 let userRepository = new UserRepository(userData, userIdRandomizer);
 let hydrationRepository = new HydrationRepository(hydrationData, userIdRandomizer);
 let sleepRepository = new SleepRepository(sleepData, userIdRandomizer);
 let activityRepository = new ActivityRepository(userIdRandomizer, activityData);
+let user = new User(userRepository.getUserData());
 
 $(document).ready(() => {
   let userInfo = userRepository.getUserData();
@@ -46,11 +48,12 @@ function onPageLoad() {
 }
 
 function updateUserDataDOM(userInfo) {
-  $(`<p>Welcome,</p><h1>${userInfo.name}</h1>`).prependTo(name);
+  $(`<p>Welcome,</p><h1>${user.getFirstName()}</h1>`).prependTo(name);
   address.text(userInfo.address);
   email.text(userInfo.email);
   strideLength.text(userInfo.strideLength);
   dailyStepGoal.text(userInfo.dailyStepGoal);
+  friendList.text(userRepository.getFriendsName().join(', '));
 }
 
 function compareStepGoal(userInfo) {
@@ -68,7 +71,7 @@ function compareStepGoal(userInfo) {
         labels: ['TODAY', 'GOAL'],
         datasets: [{
           label: 'Your weekly steps',
-          backgroundColor: ['#f7be16', 'lightgray'],
+          backgroundColor: ['#f7be16', '#e6e6e6'],
           borderWidth: 3,
           borderColor: 'white',
           hoverBackgroundColor: 'pink',
@@ -84,12 +87,12 @@ function compareStepGoal(userInfo) {
         labels: ['TODAY', 'GOAL'],
         datasets: [{
           label: 'Your weekly steps',
-          backgroundColor: ['#f7be16', 'lightgray'],
+          backgroundColor: ['#f7be16', '#e6e6e6'],
           borderWidth: 3,
           borderColor: 'white',
           hoverBackgroundColor: 'pink',
           hoverBorderColor: 'white',
-          data: [avgStep, dailyStep]
+          data: [dailyStep, avgStep]
         }]
       },
     });
@@ -117,8 +120,8 @@ function displayWeeklyOz() {
       labels: dates,
       datasets: [{
         label: 'Oz water drank',
-        backgroundColor: '#6bc5d2',
-        borderColor: '#6bc5d2',
+        backgroundColor: '#015492',
+        borderColor: '#015492',
         data: ozs
       }]
     },
@@ -161,8 +164,31 @@ function displaySleep() {
   $(`<h5>Avg. Hours Slept : <span>${userLogsHours}</span></h5>`).appendTo(allTimeSleep);
   $(`<h5>Avg. Sleep Quality : <span>${userLogsQuality}</span></h5>`).appendTo(allTimeSleep);
 
+  let dates = [];
+  let hoursSlept = [];
+  let sleepQualities = [];
   weeklyData.forEach(day => {
-    return $(`<li>${day.date}: ${day.hoursSlept} hours, ${day.sleepQuality} qual</li>`).appendTo(weeklySleep);
+    dates.push(new Date(day.date).toString().slice(0, 3));
+    hoursSlept.push(day.hoursSlept);
+    sleepQualities.push(day.sleepQuality);
+  });
+
+  new Chart(weeklySleep, {
+    type: 'bar',
+    data: {
+      datasets: [{
+        label: 'Hours Slept',
+        data: hoursSlept,
+        color: 'gold'
+      }, {
+        label: 'Quality Level',
+        data: sleepQualities,
+
+        // Changes this dataset to become a line
+        type: 'line'
+      }],
+      labels: dates
+    },
   });
 }
 
@@ -172,10 +198,9 @@ function displayActivity() {
   const milesWalked = activityRepository.getMilesWalked(getCurrentDate(), userRepository.getUserData());
   const kmWalked = activityRepository.getKilometersWalked(getCurrentDate(), userRepository.getUserData());
 
-  $(`<li>You took ${avgStairsDay} steps</li>`).appendTo(dailyActivity);
-  $(`<li>You were active for ${avgMinsDay} minutes</li>`).appendTo(dailyActivity);
-  $(`<li>You walked ${milesWalked} miles</li>`).appendTo(dailyActivity);
-  $(`<li>You walked ${kmWalked} km</li>`).appendTo(dailyActivity);
+  $(`<h5>• <span>${avgStairsDay}</span> STEPS</h5>`).appendTo(dailyActivity);
+  $(`<h5>• ACTIVE <span>${avgMinsDay}</span> MINS</h5>`).appendTo(dailyActivity);
+  $(`<h5>• WALKED <span>${milesWalked}</span> MILES / <span>${kmWalked}</span> KM</h5>`).appendTo(dailyActivity);
 }
 
 function displayAverageWeeklyActivity() {
