@@ -179,10 +179,13 @@ function displaySleep() {
       datasets: [{
         label: 'Hours Slept',
         data: hoursSlept,
-        color: 'gold'
+        backgroundColor: '#0153928c',
+        borderColor: '#01539230'
       }, {
         label: 'Quality Level',
         data: sleepQualities,
+        backgroundColor: '#00818a',
+        borderColor: '#00818a',
 
         // Changes this dataset to become a line
         type: 'line'
@@ -210,10 +213,11 @@ function displayAverageWeeklyActivity() {
   const getDailyFlights = activityRepository.getDailyStats(getCurrentDate(), 'flightsOfStairs');
   const getDailySteps = activityRepository.getDailyStats(getCurrentDate(), 'numSteps');
   const getDailyMinutes = activityRepository.getDailyStats(getCurrentDate(), 'minutesActive');
+  const status = (personal, avg) => personal > avg ? 'over' : 'under';
 
-  $(`<li>${averageStairsDay - getDailyFlights} stairs from the average</li>`).appendTo(compareActivity);
-  $(`<li>${averageStepsDay - getDailySteps}  from the average</li>`).appendTo(compareActivity);
-  $(`<li>${averageMinutesDay - getDailyMinutes} from the average</li>`).appendTo(compareActivity);
+  $(`<h5><span>${Math.abs(averageStepsDay - getDailySteps)}</span> steps ${status(averageStepsDay, getDailySteps)} the avg</h5>`).appendTo(compareActivity);
+  $(`<h5><span>${Math.abs(averageMinutesDay - getDailyMinutes)}</span> mins ${status(averageMinutesDay, getDailyMinutes)} the avg</h5>`).appendTo(compareActivity);
+  $(`<h5><span>${Math.abs(averageStairsDay - getDailyFlights)}</span> stair flights ${status(averageStairsDay, getDailyFlights)} the avg</h5>`).appendTo(compareActivity);
 }
 
 function displayWeeklyActivity() {
