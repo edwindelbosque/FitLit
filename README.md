@@ -20,18 +20,19 @@ The repository can be found <a href="https://github.com/SamuelColeman/idea-box">
 - Create a data dashboard that is easy to use and displays information in a clear way
 
 
-## Built With
+## Built With/Utilizing
 
-- HTML5
-- CSS3
-- JavaScript
+- ES6
 - Mocha
 - Chai
+- TDD
+- HTML5
+- CSS3
 
 
 ## Screenshots
 
-![Example of a fitness app provided in the project spec](imageHere.jpg "Example of a fitness app provided in the project spec")
+![Example of a fitness app provided in the project spec](images/Provided-Comp.png "Example of a fitness app provided in the project spec")
 
 ![Desktop View - Top Half](imageHere.jpg "Desktop View - Top Half")
 
