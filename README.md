@@ -1,82 +1,66 @@
-# FitLit Starter Kit
+# FitLit Project
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
 
-## Setup
+## General Info
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `open src/index.html` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
+We were given a dataset from the Mod 2 instructors at Turing and had to take the data and display it in a meaningful way.
+The repository can be found <a href="https://github.com/SamuelColeman/idea-box">here</a>. The project specs can be found <a href="https://frontend.turing.io/projects/fitlit.html">here</a>. The live page can be accessed <a href="https://edwindelbosque.github.io/FitLit/">here</a>.
 
-## Testing
+## Contributors 
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+#### By [Edwin Del Bosque](https://github.com/edwindelbosque) and [Vanessa Randall](https://github.com/vrandall66)
 
-## Linting Your Code
+## Goals and Objectives
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+- Implement ES6 classes that communicate to each other as needed
+- Write modular, reusable code that follows SRP (Single Responsibility Principle)
+- Implement a robust testing suite using TDD
+- Use object and array prototype methods to perform data manipulation
+- Display information on the page while maintaining ability to test class properties and methods
+- Create a data dashboard that is easy to use and displays information in a clear way
 
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
 
-## Data Model
+## Built With
 
-**Users**
+- HTML5
+- CSS3
+- JavaScript
+- Mocha
+- Chai
 
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
 
-**Activity**
+## Screenshots
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
+![Example of a fitness app provided in the project spec](imageHere.jpg "Example of a fitness app provided in the project spec")
 
-**Hydration**
+![Desktop View - Top Half](imageHere.jpg "Desktop View - Top Half")
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
 
-**Sleep**
+## Features
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+- [x] Sample datasets that match the structure of the application data
+- [x] Identified by their userID, show the average fluid ounces consumed per day for all time
+- [x] Display a user's number of fluid ounces of water consumed for a specific day (any possible day)
+- [x] Display how much water was consumed each day over the course of a week
+- [x] Display the average number of hours slept per day
+- [x] Display average sleep quality per day over all time
+- [x] Display number of hours they slept for a specific day (any possible day)
+- [x] Display their sleep quality for a specific day (identified by a date)
+- [x] Display how many hours slept each day over the course of any given week
+- [x] Display sleep quality each day over the course of any given week
+- [x] Display the average sleep quality of all users
+- [x] Find all users who average a sleep quality greater than 3 for any given week
+- [x] Find the users who slept the most number of hours the previous night
+- [x] Display the number of miles walked based on their number of steps and stride length
+- [x] Display how many minutes they active for any given day
+- [x] Display how many minutes active the user averaged for any given week
+- [x] Evaluate if the user reached their step goal for any given day
+- [x] Display all of the days where they exceeded their step goal
+- [x] Find the user's all-time stair climbing record
+- [x] Display what is the average number of stairs climbed, steps taken, and minutes active for any given day
+- [x] User's can see their friends step count for a whole week in order of who won
+- [x] Display which days the user had increasing steps for 3 or more days
+- [x] Utilize Chart.js to display data
+- [ ] Drag-and-drop widgets
+- [ ] Give the user the ability to select the widgets they always want to see at the top of the page and save this customization to Local Storage
+- [ ] Admin view showing all user data and trends
