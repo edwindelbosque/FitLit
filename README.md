@@ -34,7 +34,7 @@ The repository can be found <a href="https://github.com/edwindelbosque/FitLit">h
 
 ![Desktop View - user that did not meet their daily step goal that day](images/LowSteps.png "Desktop View - user that did not meet their daily step goal that day")
 
-![Desktop View - user that met their daily step goal that day](images/AllSteps.jpg "Desktop View - user that met their daily step goal that day")
+![Desktop View - user that met their daily step goal that day](images/AllSteps.png "Desktop View - user that met their daily step goal that day")
 
 
 ## Features
