@@ -1,6 +1,6 @@
 :root {
   --accent-color: #f9bb47;
-  --background: #143642;
+  --background: #1a353f;
   --shadow: #1a1b25;
   --background-light: #015492;
   --light-text: #bfc0c0;
@@ -24,14 +24,21 @@ body {
 
 nav {
   align-items: center;
-  background-color: var(--box-background);
-  color: var(--background-light);
+  background-image: linear-gradient(white, rgb(226, 226, 226));
+  color: #2b8b9e;
   display: flex;
   justify-content: space-between;
   height: 50px;
   font-size: 18px;
-  padding: 0 165px;
+  padding: 0 11.5%;
   width: 100%;
+}
+
+header ul {
+  margin-top: 10px;
+  background-color: #23586385;
+  padding: 10px;
+  border-radius: 3px;
 }
 
 h6 {
@@ -45,6 +52,10 @@ header {
   height: 100px;
   padding: 0 50px;
   width: 1200px;
+}
+
+#friend-list {
+  color: var(--accent-color);
 }
 
 header p {
@@ -63,7 +74,7 @@ ul {
 }
 
 li {
-  color: grey;
+  color: rgb(212, 212, 212);
   font-size: 80%;
   font-weight: 700;
 }
@@ -195,6 +206,11 @@ h5 {
   width: 40%;
 }
 
+.step-icon {
+  height: 180px;
+  margin-top: 65px;
+}
+
 .sleep-icon,
 .water-icon {
   margin-bottom: 25px;
@@ -238,4 +254,23 @@ color: var(--accent-color)
 
 .exercise-icon {
   width: 35%;
+}
+
+.article__widget--div h5 {
+  text-align: left;
+  color: rgb(107, 107, 107);
+}
+
+.article__widget--div {
+  margin-bottom: 20px;
+}
+
+.article__widget--div span {
+  color: rgb(137, 190, 67);
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.activity--container--1 {
+  margin-bottom: 20px;
 }

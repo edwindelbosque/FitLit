@@ -28,6 +28,7 @@
       <li>Email: <span id="email"></span></li>
       <li>Stride Length: <span id="strideLength"></span></li>
       <li>Daily Step Goal: <span id="stepGoal"></span></li>
+      <li>Friends: <span id="friend-list"></span></li>
     </ul>
   </header>
   <main>
@@ -76,7 +77,7 @@
         </article>
         <article class="sleep__article--2 article--widget">
           <h5>YOUR SLEEPING CHART</h5>
-          <ul id="weekly-sleep"></ul>
+          <canvas id="weekly-sleep"></canvas>
         </article>
         <article class="sleep__article--3 article--widget">
           <h5>ALL-TIME STATS</h5>
@@ -90,10 +91,13 @@
       <section class="activity--container--1 widget--container">
         <article class="activity__article--1 article--widget">
           <h5>TODAY'S ACTIVITY</h5>
-          <ul id="daily-activity"></ul>
+          <img class="exercise-icon" src="../images/exercise.icon.png">
+          <div id="daily-activity" class="article__widget--div"></div>
         </article>
+        <img class="step-icon" src="../images/step-icon.png">
         <article class="activity__article--2 article--widget">
           <h5>WORLD COMPARISON</h5>
+          <img src="../images/globe-icon.png">
           <ul id="compare-activity"></ul>
         </article>
       </section>
