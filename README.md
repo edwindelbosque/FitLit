@@ -34,7 +34,9 @@ The repository can be found <a href="https://github.com/SamuelColeman/idea-box">
 
 ![Example of a fitness app provided in the project spec](images/Provided-Comp.png "Example of a fitness app provided in the project spec")
 
-![Desktop View - Top Half](imageHere.jpg "Desktop View - Top Half")
+![Desktop View - user that did not drink enough water that day](images/IncompleteWater.png "Desktop View - user that did not drink enough water that day")
+
+![Desktop View - user that drank enough water that day](images/AllWater.png "Desktop View - user that drank enough water that day")
 
 
 ## Features
