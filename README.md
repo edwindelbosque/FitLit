@@ -1,4 +1,4 @@
-# FitLit Project
+# FitLit: A fitbit-like activity tracker dashboard
 
 ## Developers
 - [@edwindelbosque](https://github.com/edwindelbosque)
