@@ -1,14 +1,14 @@
 # FitLit Project
 
+## Developers
+- [@edwindelbosque](https://github.com/edwindelbosque)
+- [@vrandall66](https://github.com/vrandall66)
+
 ## Summary
 FitLit is an original activity tracker dashboard similar to Fitbit. For this project, we had access to a large activity tracker dataset from many users over many days. Similarly to how Fitbit devices log data and present it on a dashboard for their users. Our main purpose was to transform all the data into meaningful information for the user, and to display it with an original design for the user to view and see their latest activity stats, goals, and milestones.
 The project specs can be found <a href="https://frontend.turing.io/projects/fitlit.html">here</a>. 
 
 ### The live page can be accessed <a href="https://edwindelbosque.github.io/FitLit/src/index.html">here</a>.
-
-### Contributors 
-
-## by [Edwin Del Bosque](https://github.com/edwindelbosque) & [Vanessa Randall](https://github.com/vrandall66)
 
 ## Goals and Objectives
 
