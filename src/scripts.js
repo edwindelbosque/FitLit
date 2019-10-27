@@ -259,7 +259,8 @@ function getCurrentDate() {
   }
 
   today = `${yyyy}/${mm}/${dd}`;
-  return today;
+  return '2019/09/05';
+  // return today;
 }
 
 function displayCurrentDate(day) {
